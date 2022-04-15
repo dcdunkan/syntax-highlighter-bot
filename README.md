@@ -2,7 +2,7 @@
 
 Kind of a _copy_; highly inspired from
 [Piterden/syntax-highlighter-bot](https://github.com/Piterden/syntax-highlighter-bot) -
-Telegram Bot [here]()
+Telegram Bot [here](https://telegram.me/cris_highlight_bot)
 
 Minimal syntax highlighting bot. Use it private chat or add to group chats. Send
 text inside three backticks, or any message containing `pre` entities, and the
@@ -83,7 +83,7 @@ Make sure you have installed [Deno](https://deno.land/).
   like in <samp> [example.env](example.env)</samp>.
 - Run the bot using the command below.
   ```bash
-  deno run --allow-net --allow-env --allow-read --allow-write --allow-run --unstable mod.ts
+  deno run --allow-net --allow-env --allow-read --allow-write --allow-run --unstable local.ts
   ```
 
   **Required permissions**
