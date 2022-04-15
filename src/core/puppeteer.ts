@@ -3,6 +3,7 @@ import { getTheme } from "./themes.ts";
 import { highlight } from "./highlight.ts";
 
 export const browser = await puppeteer.launch({
+  executablePath: "google-chrome",
   headless: true,
   args: ["--no-sandbox", "--disable-setuid-sandbox"],
 });
