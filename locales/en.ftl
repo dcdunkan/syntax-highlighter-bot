@@ -34,7 +34,7 @@ as-doc =
   .enabled = No more blurry pictures! From now on, I will send images as documents!
   .disabled = Okay, from now on, I <b>won't</b> be sending images as documents!
 
-status = 
+stats = 
   {
     $count ->
       [0] You haven't used me properly :(
