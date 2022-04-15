@@ -32,7 +32,3 @@ await bot.api.setMyCommands(commands, { scope: { type: "all_private_chats" } });
 await bot.api.setMyCommands(groupAdminCommands, {
   scope: { type: "all_chat_administrators" },
 });
-
-// bot.start({
-//   onStart: ({ username }) => console.log(`${username} is running..`),
-// });

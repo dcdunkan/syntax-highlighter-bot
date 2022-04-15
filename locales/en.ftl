@@ -1,7 +1,7 @@
 start = 
   Hi! I can highlight multiline source code (text inside three backticks) in chats. You can set custom /font and /theme if you want to. If you want the images /as_document, you can toggle it using /as_doc.
 
-  Developed by @dcdunkan from @dcbots. See the GitHub repository <a href="https://github.com/opentg/syntax-highlight-bot">here</a>.
+  Developed by @dcdunkan from @dcbots. See the GitHub repository <a href="https://github.com/dcdunkan/syntax-highlighter-bot">here</a>.
   
 font =
   .info =
