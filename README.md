@@ -45,7 +45,8 @@ Thanks to these tools and libraries.
   in chat for the list of available fonts.
 - 🗎 · **Send images as documents**. Sometimes long code might make the image
   blurry due to the default Telegram image compression. Sending them as
-  documents fixes the issue.
+  documents fixes the issue. Use either <ins><samp>/as_doc</samp></ins> or
+  <ins><samp>/as_document</samp></ins> command.
 - 👀 · **Language Detection**: Tries to detect and use the language for more
   accurate results.
   - `bot.ts <code>` - Detects <samp>ts</samp>.
