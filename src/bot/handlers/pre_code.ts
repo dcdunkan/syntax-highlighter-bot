@@ -89,7 +89,9 @@ preCode.on("msg::pre", async (ctx) => {
     const messageIds = imageGroup.map((image) => image.message_id).join(".");
 
     return await ctx.reply(
-      `<code>${images.length} photos, ${bytes(totalSize)}</code>`,
+      `<code>${images.length} photos${
+        doc ? `, ${bytes(totalSize)}` : ""
+      }</code>`,
       {
         reply_markup: new InlineKeyboard().text(
           `Remove (only ${ctx.from?.first_name} can)`,
@@ -117,7 +119,9 @@ preCode.on("msg::pre", async (ctx) => {
 
     await ctx.reply(
       i + 1 === totalAlbums
-        ? `<code>${images.length} photos, ${bytes(totalSize)}</code>`
+        ? `<code>${images.length} photos${
+          doc ? `, ${bytes(totalSize)}` : ""
+        }</code>`
         : "====================",
       {
         reply_markup: new InlineKeyboard().text(
