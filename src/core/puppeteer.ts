@@ -98,9 +98,9 @@ export async function getScreenshotBuffer(
   const highlightedCode = await page.$("#code");
   if (!highlightedCode) return;
 
-  const imageBuffer = await highlightedCode.screenshot();
+  const image = await highlightedCode.screenshot();
   await page.close();
-  return imageBuffer;
+  return image;
 }
 
 // console.log(await getScreenshotBuffer("console.log('Hello mom!');"));
