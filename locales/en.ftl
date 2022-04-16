@@ -41,3 +41,8 @@ stats =
       [1] I've only highlighted one time in this chat.
      *[other] So far, I've highlighted <b>{NUMBER($count, useGrouping:1)}</b> times in this chat :)
   }
+
+remove =
+  .no-permission = ⚒ Sorry, only the original author and administrators of this chat are allowed to remove messages!
+  .photo-removed = 🗑 Photo removed
+  .photos-removed = 🗑 Photos removed
