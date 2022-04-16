@@ -1,4 +1,4 @@
-import { allThemes, themeName } from "../../core/themes.ts";
+import { allThemes } from "../../core/themes.ts";
 import { Composer } from "../../deps.ts";
 import { Context } from "../helpers/context.ts";
 

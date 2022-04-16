@@ -17,7 +17,7 @@ bot.use(useFluent({ fluent }));
 
 bot.use(handlers);
 
-bot.catch(async ({ ctx, error }) => {
+bot.catch(({ ctx, error }) => {
   console.error(`Error while handling update ${ctx.update.update_id}:`);
   if (error instanceof GrammyError) {
     console.error("Error in request:", error.description);
