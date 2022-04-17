@@ -4,10 +4,10 @@ Kind of a _copy_; highly inspired from
 [Piterden/syntax-highlighter-bot](https://github.com/Piterden/syntax-highlighter-bot) -
 Telegram Bot [here](https://telegram.me/cris_highlight_bot)
 
-Minimal syntax highlighting bot. Use it private chat or add to group chats. Send
-text inside three backticks, or any message containing `pre` entities, and the
-bot will reply you with syntax highlighted images of that piece of code. Useful
-in Development groups.
+Minimal syntax highlighting bot for Telegram. Use it private chat or add to
+group chats. Send text inside three backticks, or any message containing `pre`
+or multiline `code` entities, and the bot will reply you with syntax highlighted
+images of that piece of code. Useful in Development groups.
 
 ### Try the running bot here: [Syntax Highlighter Bot](https://telegram.me/syntaxybot) 🚀
 
@@ -15,7 +15,7 @@ Written in [TypeScript](https://typescriptlang.org) and
 [grammY](https://grammy.dev/) and runs on [Deno](https://deno.land/).
 
 - [Built Using](#built-using)
-- [Features](#features)
+- [Features (and usage)](#features)
 - [Setup › Running Locally](#running-locally)
 - [Setup › Deploy to Heroku](#deploy-to-heroku)
 - [Setup › Environment Variables](#environment-variables)
@@ -24,7 +24,7 @@ Written in [TypeScript](https://typescriptlang.org) and
 
 Thanks to these tools and libraries.
 
-1. [Highlight.js][hljs] — Syntax highlighting for the Web. Behind-the-scenes of
+1. [highlight.js][hljs] — Syntax highlighting for the Web. Behind-the-scenes of
    this bot.
 2. [Puppeteer](https://pptr.dev) — Puppeteer is a library which provides a
    high-level API to control Chrome, Chromium, or Firefox Nightly over the
@@ -35,38 +35,88 @@ Thanks to these tools and libraries.
 
 ## Features
 
-- 🖍️ · **Syntax Highlighting** for almost 197 languages with automatic language
+(and usage)
+
+- 🖍️ · **Syntax Highlighting** for almost 200 languages with automatic language
   detection - power of [highlight.js][hljs]!
+
 - 🎨 · **Custom theming** for the images. Use the <ins><samp>/theme</samp></ins>
   command to set any theme from
   [this list](https://telegra.ph/Themes---Syntax-Highlighter-Bot-04-14). See
   themes in action [here](https://highlightjs.org/static/demo/).
+
 - 🗛 · **Multiple fonts** support. See the <ins><samp>/font</samp></ins> command
   in chat for the list of available fonts.
+
 - 🗎 · **Send images as documents**. Sometimes long code might make the image
   blurry due to the default Telegram image compression. Sending them as
   documents fixes the issue. Use either <ins><samp>/as_doc</samp></ins> or
   <ins><samp>/as_document</samp></ins> command.
+
 - 👀 · **Language Detection**: Tries to detect and use the language for more
   accurate results.
   - `bot.ts <code>` - Detects <samp>ts</samp>.
   - `ts <code>` - Detects <samp>ts</samp>.
   - `<code>` - Auto detection by [highlight.js][hljs].
 
-  > NOTE: The `<code>` should be a <samp>pre</samp> formatted code block.
-- Not a very useful feature, use <ins><samp>/stats</samp></ins> command to find
+  NOTE: The `<code>` ~~should be a <samp>pre</samp> formatted code block~~ could
+  be a <samp>pre</samp> entity formatted code block, or a multiline
+  <samp>code</samp> entity.
+
+- 🖌️ · **Forced highlighting**: Replying <ins><samp>/highlight</samp></ins> or
+  <ins><samp>/hl</samp></ins> to a message containing text or caption, will
+  - check for `pre` and `code` (multiline) entities and if there is any, only
+    highlights those as it normally do. Useful if the original message was
+    edited later.
+  - If no `pre` or `code` (multiline) entities were found, highlights the whole
+    message. Useful if you forgot to format them before sending.
+  - You can optionally pass arguments separated by commas or white spaces. The
+    accepted arguments are integers corresponding to the position of the
+    `pre`/`code` entity in the message. Starting from 1. See the example below.
+
+    Additionally, you can also pass any of `0`, `full`, `f` to get the whole
+    message highlighted. (why?: If you ever need to highlight the full message
+    which contains `pre`/`code` entities).
+
+    Take this message as an example:
+    ```
+    Lorem ipsum <code (inline)> dolor sit amet.
+
+    <code (multi line)>
+
+    Nunc in ligula vehicula quam efficitur vehicula at lacinia erat.
+
+    <pre>
+    ```
+
+    Now, replying,
+
+    > **NOTE**: <ins><samp>/hl</samp></ins> is the same as
+    > <ins><samp>/highlight</samp></ins>. It's just a short form.
+
+    - `/hl` will highlight `<code (multi line)>` and `<pre>` (Default).
+    - `/hl 1` will only highlight the `<code (inline)>`.
+    - `/hl 2` will only highlight the `<code (multi line)>`.
+    - `/hl 3` will only highlight the `<pre>`.
+    - `/hl 1 3` will highlight both `<code (inline)>` and `<pre>`.
+    - `/hl 0` or `/hl f` or `/hl full` will highlight the whole message.
+
+    <!-- > **NOTE**: `/hl 0 1` only highlights the full message; not both full
+    > message and 1st `pre`/`code` entity. -->
+
+- Not a very useful feature; use <ins><samp>/stats</samp></ins> command to find
   how many times the bot has sent syntax highlighted images for you.
 
 ### "Maybe" features that I'd like to add if possible.
 
-- <b>Forced <ins><samp>/highlight</samp></ins>ing</b> by replying to a message -
-  if the message contains pre code blocks, highlight them in the usual way. If
-  not, highlight the whole message.
-- Highlight only if the code block contains more than <b><samp>x</samp> number
-  of characters</b>. It would be a mess if someone use three backticks instead
-  of one backtick, even for a single monospace word.
-- <b>Automatically toggle "Send as Document" _mode_</b> if there is more than
-  <samp>x</samp> number of characters.
+- [x] <b>Forced <ins><samp>/highlight</samp></ins>ing</b> by replying to a
+      message - if the message contains pre code blocks, highlight them in the
+      usual way. If not, highlight the whole message.
+- [ ] Highlight only if the code block contains more than <b><samp>x</samp>
+      number of characters</b>. It would be a mess if someone use three
+      backticks instead of one backtick, even for a single monospace word.
+- [ ] <b>Automatically toggle "Send as Document" _mode_</b> if there is more
+      than <samp>x</samp> number of characters.
 
 ## Setup
 
@@ -143,6 +193,12 @@ Feel free to contribute! And if you are having issues or if you want suggest
 something, please open an issue here:
 [dcdunkan/syntax-highlighter-bot/issues](https://github.com/dcdunkan/syntax-highlighter-bot/issues).
 Or, open a [PQ](https://telegram.me/grammyjs/34358)!
+
+### Translating
+
+If you like to translate this bot into your language, please follow
+[the English translation file](locales/en.ftl). This project uses
+[Fluent](https://projectfluent.org) for localization.
 
 ---
 
