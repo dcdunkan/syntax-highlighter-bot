@@ -1,6 +1,6 @@
 import { Composer, MessageEntity } from "../../deps.ts";
 import { Context } from "../helpers/context.ts";
-import { sendImages } from "./pre_code.ts";
+import { sendImages } from "../helpers/send_images.ts";
 
 export const highlight = new Composer<Context>();
 
@@ -23,12 +23,14 @@ highlight.command(["highlight", "hl"], async (ctx) => {
     if (entity.type === "pre" || entity.type === "code") return true;
   });
 
-  const args = ctx.match.split(/,\s+/g);
+  const args = ctx.match.split(/[,\s]+/g);
 
   if (ctx.match) {
-    if (args[0] === "0" || args[0] === "f" || args[0] === "full") {
+    if (args.includes("0") || args.includes("f") || args.includes("full")) {
       entities = [{ type: "pre", offset: 0, length: text.length }];
+      return await sendImages(ctx, text, entities);
     }
+
     const entities_: MessageEntity[] = [];
     for (const arg of args) {
       if (isNaN(parseInt(arg))) continue;
