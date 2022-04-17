@@ -4,7 +4,7 @@ import { bot } from "./src/bot/bot.ts";
 const handleUpdate = webhookCallback(bot, "std/http");
 
 const port = parseInt(Deno.env.get("PORT") ?? "8000");
-console.log(`Listening on :${port}`);
+console.log(`Listening on: ${port}`);
 
 serve(async (req) => {
   if (req.method == "POST") {
