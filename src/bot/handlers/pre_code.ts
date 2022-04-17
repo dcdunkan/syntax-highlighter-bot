@@ -16,32 +16,52 @@ type InputMediaDocument = GrammyTypes["InputMediaDocument"];
 
 export const preCode = new Composer<Context>();
 
-preCode.on("msg::pre", async (ctx) => {
-  const text = ctx.message?.text ?? ctx.message?.caption;
-  const entities = ctx.message?.entities ?? ctx.message?.caption_entities;
+preCode.on(["msg::code", "msg::pre"], async (ctx) => {
+  let text: string;
+  if (ctx.msg.text) text = ctx.msg.text;
+  else if (ctx.msg.caption) text = ctx.msg.caption;
+  else return;
 
-  if (!entities || !text) return;
+  let entities: MessageEntity[];
+  if (ctx.msg.entities) entities = ctx.msg.entities;
+  else if (ctx.msg.caption_entities) entities = ctx.msg.caption_entities;
+  else return;
 
+  const codeEntities = entities.filter((entity) => {
+    if (entity.type === "pre") return true;
+    if (entity.type !== "code") return;
+    // If it's the only code entity.
+    // Solution for @darvesh's test snippet: `console.log("grammY");`
+    if (entity.offset === 0 && entity.length === text.length) return true;
+    const code = text.slice(entity.offset, entity.offset + entity.length);
+    return code.trim().includes("\n");
+  });
+
+  if (!codeEntities.length) return;
+
+  await sendImages(ctx, text, codeEntities);
+});
+
+export async function sendImages(
+  ctx: Context,
+  text: string,
+  entities: MessageEntity[],
+) {
   const images: Array<InputMediaPhoto | InputMediaDocument> = [];
-  const preEntities = entities.filter((preEntity) =>
-    preEntity.type === "pre"
-  ) as MessageEntity.PreMessageEntity[];
   const doc = ctx.session.as_document;
   let totalSize = 0;
 
-  for (const entity of preEntities) {
-    // Expecting any of the template text message:
-    // (...blah blah) {language *code* || filename *code* || *code*} (blah blah continues...)
-    const expectingLanguage = entity.language ?? text
-      .substring(0, entity.offset) // Get the text till the beginning of the code.
-      .trim()
-      .split(/[.,\s]+/) // Split on dots, commas, and white spaces.
-      .pop() ??
-      ""; // Get the last one -- it can be a filename, like 'index.ts' or a language (maybe extension?) like 'ts' | 'typescript'.
+  for (const entity of entities) {
+    let expecting: string;
 
-    const language = supportsLanguage(expectingLanguage)
-      ? expectingLanguage
-      : undefined;
+    const lastText = text
+      .substring(0, entity.offset).trim().split(/[.,\s]+/).pop();
+
+    if ("language" in entity && entity.language) expecting = entity.language;
+    else if (lastText) expecting = lastText;
+    else expecting = "";
+
+    const language = supportsLanguage(expecting) ? expecting : undefined;
 
     const code = text.slice(entity.offset, entity.offset + entity.length);
 
@@ -60,7 +80,7 @@ preCode.on("msg::pre", async (ctx) => {
     });
   }
 
-  if (images.length === 0) return;
+  if (!images.length) return;
 
   // Single
   if (images.length === 1) {
@@ -131,4 +151,4 @@ preCode.on("msg::pre", async (ctx) => {
       },
     );
   }
-});
+}

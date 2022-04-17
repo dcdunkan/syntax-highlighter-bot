@@ -46,3 +46,6 @@ remove =
   .no-permission = ⚒ Sorry, only the original author and administrators of this chat are allowed to remove messages!
   .photo-removed = 🗑 Photo removed
   .photos-removed = 🗑 Photos removed
+
+highlight =
+  .reply-to-message = Please send this command as a reply to a text message.

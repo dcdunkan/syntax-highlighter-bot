@@ -8,6 +8,7 @@ import { stats } from "./stats.ts";
 import { remove } from "./remove.ts";
 import { preCode } from "./pre_code.ts";
 import { asDocument } from "./as_doc.ts";
+import { highlight } from "./highlight.ts";
 
 export const handlers = new Composer<Context>();
 
@@ -16,6 +17,7 @@ export const handlers = new Composer<Context>();
 handlers
   .filter(async (ctx) => {
     if (ctx.chat?.type === "private") return true;
+    if (ctx.chat?.type === "channel") return false;
     const user = await ctx.getAuthor();
     return user.status === "creator" || user.status === "administrator";
   })
@@ -27,3 +29,4 @@ handlers
 
 handlers.on("callback_query").use(remove);
 handlers.use(preCode);
+handlers.use(highlight);
