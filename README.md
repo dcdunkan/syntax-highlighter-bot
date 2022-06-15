@@ -37,24 +37,27 @@ Thanks to these tools and libraries.
 
 (and usage)
 
-- 🖍️ · **Syntax Highlighting** for almost 200 languages with automatic language
-  detection - power of [highlight.js][hljs]!
+- <a id="syntax-highlighting" href="#syntax-highlighting">🖍️</a> · **Syntax
+  Highlighting** for almost 200 languages with automatic language detection -
+  power of [highlight.js][hljs]!
 
-- 🎨 · **Custom theming** for the images. Use the <ins><samp>/theme</samp></ins>
-  command to set any theme from
-  [this list](https://telegra.ph/Themes---Syntax-Highlighter-Bot-04-14). See
-  themes in action [here](https://highlightjs.org/static/demo/).
+- <a id="custom-theming" href="#custom-theming">🎨</a> · **Custom theming** for
+  the images. Use the <ins><samp>/theme</samp></ins> command to set any theme
+  from [this list](https://telegra.ph/Themes---Syntax-Highlighter-Bot-04-14).
+  See themes in action [here](https://highlightjs.org/static/demo/).
 
-- 🗛 · **Multiple fonts** support. See the <ins><samp>/font</samp></ins> command
-  in chat for the list of available fonts.
+- <a id="multiple-fonts" href="#multiple-fonts">🗛</a> · **Multiple fonts**
+  support. See the <ins><samp>/font</samp></ins> command in chat for the list of
+  available fonts.
 
-- 🗎 · **Send images as documents**. Sometimes long code might make the image
-  blurry due to the default Telegram image compression. Sending them as
-  documents fixes the issue. Use either <ins><samp>/as_doc</samp></ins> or
+- <a id="as-documents" href="#as-documents">🗎</a> · **Send images as
+  documents**. Sometimes long code might make the image blurry due to the
+  default Telegram image compression. Sending them as documents fixes the issue.
+  Use either <ins><samp>/as_doc</samp></ins> or
   <ins><samp>/as_document</samp></ins> command.
 
-- 👀 · **Language Detection**: Tries to detect and use the language for more
-  accurate results.
+- <a id="language-detection" href="#language-detection">👀</a> · **Language
+  Detection**: Tries to detect and use the language for more accurate results.
   - `bot.ts <code>` - Detects <samp>ts</samp>.
   - `ts <code>` - Detects <samp>ts</samp>.
   - `<code>` - Auto detection by [highlight.js][hljs].
@@ -63,7 +66,8 @@ Thanks to these tools and libraries.
   be a <samp>pre</samp> entity formatted code block, or a multiline
   <samp>code</samp> entity.
 
-- <span id="forced-highlighting">🖌️ · **Forced highlighting**</span>: Replying
+- <a id="forced-highlighting" href="#forced-highlighting">🖌️</a> · **Forced
+  Highlighting**: Replying
   <ins><samp>/highlight</samp></ins> or
   <ins><samp>/hl</samp></ins> to a message containing text or caption, will
   - check for `pre` and `code` (multiline) entities and if there is any, only
@@ -105,7 +109,8 @@ Thanks to these tools and libraries.
     **NOTE**: `/hl 0 1` only highlights the full message; not both full message
     and 1st `pre`/`code` entity.
 
-- You can **Disable auto syntax highlighting** by using the
+- <a id="toggle-auto-shl" href="#toggle-auto-shl">🚫</a> · **Toggle Automatic
+  Syntax Highlighting**: You can disable auto syntax highlighting by using the
   <ins><samp>/toggle_auto_hl</samp></ins> command. (Use the same command to
   re-enable it). You don't always need the bot to highlight even the small
   codeblocks. So, when you need the highlighting, you can force it to highlight
@@ -114,8 +119,9 @@ Thanks to these tools and libraries.
 
   <kbd>v0.3.0</kbd> • See [gmy#57178](https://t.me/grammyjs/57178).
 
-- Not a very useful feature; use <ins><samp>/stats</samp></ins> command to find
-  how many times the bot has sent syntax highlighted images for you.
+- <a id="stats" href="#stats">📊</a> **Stats**: Not a very useful feature;
+  use <ins><samp>/stats</samp></ins> command to find how many times the bot has
+  sent syntax highlighted images for you.
 
 ### "Maybe" features that I'd like to add if possible.
 
