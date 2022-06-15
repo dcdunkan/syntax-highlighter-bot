@@ -9,6 +9,7 @@ import { remove } from "./remove.ts";
 import { preCode } from "./pre_code.ts";
 import { asDocument } from "./as_doc.ts";
 import { highlight } from "./highlight.ts";
+import { autoHighlight } from "./auto_hl.ts";
 
 export const handlers = new Composer<Context>();
 
@@ -25,7 +26,8 @@ handlers
   .use(font)
   .use(theme)
   .use(asDocument)
-  .use(stats);
+  .use(stats)
+  .use(autoHighlight);
 
 handlers.on("callback_query").use(remove);
 handlers.use(preCode);

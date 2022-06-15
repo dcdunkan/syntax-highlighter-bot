@@ -1,7 +1,7 @@
 start = 
-  Hi! I can highlight multiline source code (text inside three backticks) in chats. You can set custom /font and /theme if you want to. If you want the images /as_document, you can toggle it using /as_doc.
+  Hi! I can highlight multiline source code (text inside three backticks) in chats. You can set custom /font and /theme if you want to. If you want the images /as_document, you can toggle it using /as_doc. You can also disable my default auto highlighting feature using /toggle_auto_hl.
 
-  Developed by @dcdunkan from @dcbots. See the GitHub repository <a href="https://github.com/dcdunkan/syntax-highlighter-bot">here</a>.
+  Developed by @dcdunkan from @dcbots. Read the instructions on using this bot in the GitHub repository: https://github.com/dcdunkan/syntax-highlighter-bot
   
 font =
   .info =
@@ -33,6 +33,10 @@ theme =
 as-doc =
   .enabled = No more blurry pictures! From now on, I will send images as documents!
   .disabled = Okay, from now on, I <b>won't</b> be sending images as documents!
+
+auto-highlighting =
+  .enabled = I will highlight code blocks automatically from now on!
+  .disabled = Disabled auto syntax highlighting. You can use the /hl command to force highlight a message. Read the <b>Forced Highlighting</b> section to know more about optional arguments: https://github.com/dcdunkan/syntax-highlighter-bot#readme.
 
 stats = 
   {
