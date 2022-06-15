@@ -4,7 +4,7 @@ Kind of a _copy_; highly inspired from
 [Piterden/syntax-highlighter-bot](https://github.com/Piterden/syntax-highlighter-bot) -
 Telegram Bot [here](https://telegram.me/cris_highlight_bot)
 
-Minimal syntax highlighting bot for Telegram. Use it private chat or add to
+Minimal syntax highlighting bot for Telegram. Use it in private chats or add to
 group chats. Send text inside three backticks, or any message containing `pre`
 or multiline `code` entities, and the bot will reply you with syntax highlighted
 images of that piece of code. Useful in Development groups.
@@ -63,7 +63,8 @@ Thanks to these tools and libraries.
   be a <samp>pre</samp> entity formatted code block, or a multiline
   <samp>code</samp> entity.
 
-- 🖌️ · **Forced highlighting**: Replying <ins><samp>/highlight</samp></ins> or
+- <span id="forced-highlighting">🖌️ · **Forced highlighting**</span>: Replying
+  <ins><samp>/highlight</samp></ins> or
   <ins><samp>/hl</samp></ins> to a message containing text or caption, will
   - check for `pre` and `code` (multiline) entities and if there is any, only
     highlights those as it normally do. Useful if the original message was
@@ -101,8 +102,17 @@ Thanks to these tools and libraries.
     - `/hl 1 3` will highlight both `<code (inline)>` and `<pre>`.
     - `/hl 0` or `/hl f` or `/hl full` will highlight the whole message.
 
-    <!-- > **NOTE**: `/hl 0 1` only highlights the full message; not both full
-    > message and 1st `pre`/`code` entity. -->
+    **NOTE**: `/hl 0 1` only highlights the full message; not both full message
+    and 1st `pre`/`code` entity.
+
+- You can **Disable auto syntax highlighting** by using the
+  <ins><samp>/toggle_auto_hl</samp></ins> command. (Use the same command to
+  re-enable it). You don't always need the bot to highlight even the small
+  codeblocks. So, when you need the highlighting, you can force it to highlight
+  the message/code blocks. Checkout the
+  ["Forced Highlighting"](#forced-highlighting) feature.
+
+  <kbd>v0.3.0</kbd> • See [gmy#57178](https://t.me/grammyjs/57178).
 
 - Not a very useful feature; use <ins><samp>/stats</samp></ins> command to find
   how many times the bot has sent syntax highlighted images for you.
@@ -117,6 +127,8 @@ Thanks to these tools and libraries.
       backticks instead of one backtick, even for a single monospace word.
 - [ ] <b>Automatically toggle "Send as Document" _mode_</b> if there is more
       than <samp>x</samp> number of characters.
+- [ ] <b>No puppeteer.</b> Highlighting without using puppeteer. (The most
+      wanted feature).
 
 ## Setup
 
