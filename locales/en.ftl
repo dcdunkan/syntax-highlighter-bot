@@ -36,7 +36,7 @@ as-doc =
 
 auto-highlighting =
   .enabled = I will highlight code blocks automatically from now on!
-  .disabled = Disabled auto syntax highlighting. You can use the /hl command to force highlight a message. Read the <b>Forced Highlighting</b> section to know more about optional arguments: https://github.com/dcdunkan/syntax-highlighter-bot#readme.
+  .disabled = Disabled auto syntax highlighting. You can use the /hl command to force highlight a message. Read the <b>Forced Highlighting</b> section to know more about optional arguments: https://github.com/dcdunkan/syntax-highlighter-bot#forced-highlighting.
 
 stats = 
   {

@@ -15,7 +15,7 @@ export function initial(): SessionData {
     theme: "atom-one-dark",
     as_document: false,
     count: 0,
-    auto_highlighting: false,
+    auto_highlighting: true,
   };
 }
 
