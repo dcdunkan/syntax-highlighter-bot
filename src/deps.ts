@@ -7,7 +7,7 @@ export * as css from "https://deno.land/x/css@0.3.0/mod.ts";
 
 // src/bot
 export { cleanEnv, str } from "https://deno.land/x/envalid@v0.0.3/mod.ts";
-export { config } from "https://deno.land/std@0.135.0/dotenv/mod.ts";
+export { config } from "https://deno.land/std@0.143.0/dotenv/mod.ts";
 export {
   Bot,
   Composer,
@@ -19,18 +19,18 @@ export {
   session,
   type SessionFlavor,
   webhookCallback,
-} from "https://deno.land/x/grammy@v1.7.3/mod.ts";
+} from "https://deno.land/x/grammy@v1.8.3/mod.ts";
 export {
   type InputFileProxy,
   type Message,
   type MessageEntity,
-} from "https://cdn.skypack.dev/@grammyjs/types@v2.6.0?dts";
-export { DetaAdapter } from "https://deno.land/x/grammy_storage_deta@v1.0.2/mod.ts";
+} from "https://esm.sh/@grammyjs/types@2.7.1";
+export { DetaAdapter } from "https://deno.land/x/grammy_storages@v2.0.0/deta/src/mod.ts";
 
 export { Fluent } from "https://deno.land/x/better_fluent@v0.1.0/mod.ts";
 export {
   type FluentContextFlavor,
   useFluent,
 } from "https://raw.githubusercontent.com/dcdunkan/grammy-fluent/main/src/mod.ts";
-export { prettyBytes as bytes } from "https://deno.land/std@0.135.0/fmt/bytes.ts";
-export { serve } from "https://deno.land/std@0.135.0/http/server.ts";
+export { prettyBytes as bytes } from "https://deno.land/std@0.143.0/fmt/bytes.ts";
+export { serve } from "https://deno.land/std@0.143.0/http/server.ts";

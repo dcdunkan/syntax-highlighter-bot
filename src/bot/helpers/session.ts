@@ -6,6 +6,7 @@ export interface SessionData {
   theme: string;
   as_document: boolean;
   count: number;
+  auto_highlighting: boolean;
 }
 
 export function initial(): SessionData {
@@ -14,6 +15,7 @@ export function initial(): SessionData {
     theme: "atom-one-dark",
     as_document: false,
     count: 0,
+    auto_highlighting: false,
   };
 }
 
