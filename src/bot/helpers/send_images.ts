@@ -1,6 +1,6 @@
 import { Context } from "../helpers/context.ts";
 import { supportsLanguage } from "../../core/highlight.ts";
-import { getScreenshotBuffer } from "../../core/puppeteer.ts";
+import { getScreenshotBuffer, ImageOptions } from "../../core/puppeteer.ts";
 import {
   bytes,
   InlineKeyboard,
@@ -17,6 +17,7 @@ export async function sendImages(
   ctx: Context,
   text: string,
   entities: MessageEntity[],
+  options?: ImageOptions,
 ) {
   const images: Array<InputMediaPhoto | InputMediaDocument> = [];
   const doc = ctx.session.as_document;
@@ -41,6 +42,7 @@ export async function sendImages(
       ctx.session.theme,
       ctx.session.font,
       language,
+      options,
     );
 
     if (!image) continue;

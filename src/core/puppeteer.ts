@@ -2,6 +2,10 @@ import { css, puppeteer } from "../deps.ts";
 import { getTheme } from "./themes.ts";
 import { highlight } from "./highlight.ts";
 
+export interface ImageOptions {
+  wrap?: boolean;
+}
+
 export const browser = await puppeteer.launch({
   executablePath: "google-chrome",
   headless: true,
@@ -15,6 +19,7 @@ function html(
   color: string,
   bgColor: string,
   language: string,
+  options: ImageOptions,
 ) {
   return `
 <html lang="en"><head>
@@ -45,7 +50,9 @@ function html(
   display: none;
 }
 </style></head>
-<body style="display: inline-block;"><pre style="max-width: 1400px;"><code class="hljs ${language}" id="code">${code}</code></pre></body></html>`;
+<body style="display: inline-block;"><pre  style="${
+    options.wrap ? "max-width: 1400px;" : "width: max-content;"
+  }"><code class="hljs ${language}" id="code">${code}</code></pre></body></html>`;
 }
 
 function getHtml(
@@ -53,6 +60,7 @@ function getHtml(
   theme: string,
   fontName: string,
   language: string,
+  options: ImageOptions,
 ) {
   const themeCss = getTheme(theme);
 
@@ -79,6 +87,7 @@ function getHtml(
     color,
     bgColor,
     language,
+    options,
   );
 }
 
@@ -87,8 +96,13 @@ export async function getScreenshotBuffer(
   theme = "atom-one-dark",
   fontName = "Fira Code",
   language = "",
+  options?: ImageOptions,
 ): Promise<string | void | Uint8Array> {
-  const html = getHtml(code, theme, fontName, language);
+  options = {
+    wrap: true,
+    ...options,
+  };
+  const html = getHtml(code, theme, fontName, language, options);
   const page = await browser.newPage();
 
   await page.setContent(html, {

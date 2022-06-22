@@ -1,6 +1,7 @@
 import { Composer, MessageEntity } from "../../deps.ts";
 import { Context } from "../helpers/context.ts";
 import { sendImages } from "../helpers/send_images.ts";
+import { ImageOptions } from "../../core/puppeteer.ts";
 
 export const highlight = new Composer<Context>();
 
@@ -25,10 +26,15 @@ highlight.command(["highlight", "hl"], async (ctx) => {
 
   const args = ctx.match.split(/[,\s]+/g);
 
+  const options: ImageOptions = {};
+  if (args.includes("w") || args.includes("no-wrap") || args.includes("nw")) {
+    options.wrap = false;
+  }
+
   if (ctx.match) {
     if (args.includes("0") || args.includes("f") || args.includes("full")) {
       entities = [{ type: "pre", offset: 0, length: text.length }];
-      return await sendImages(ctx, text, entities);
+      return await sendImages(ctx, text, entities, options);
     }
 
     const entities_: MessageEntity[] = [];
@@ -38,7 +44,9 @@ highlight.command(["highlight", "hl"], async (ctx) => {
       const entity = entities.at(index);
       if (entity) entities_.push(entity);
     }
-    if (entities_.length) return await sendImages(ctx, text, entities_);
+    if (entities_.length) {
+      return await sendImages(ctx, text, entities_, options);
+    }
   }
 
   entities = entities.filter((entity) => {
@@ -53,5 +61,6 @@ highlight.command(["highlight", "hl"], async (ctx) => {
     entities.length
       ? entities
       : [{ type: "pre", offset: 0, length: text.length }],
+    options,
   );
 });

@@ -75,13 +75,20 @@ Thanks to these tools and libraries.
     edited later.
   - If no `pre` or `code` (multiline) entities were found, highlights the whole
     message. Useful if you forgot to format them before sending.
-  - You can optionally pass arguments separated by commas or white spaces. The
-    accepted arguments are integers corresponding to the position of the
-    `pre`/`code` entity in the message. Starting from 1. See the example below.
 
-    Additionally, you can also pass any of `0`, `full`, `f` to get the whole
-    message highlighted. (why?: If you ever need to highlight the full message
-    which contains `pre`/`code` entities).
+  <h3 id="forced-highlighting-optional-args" href="#forced-highlighting-optional-args">Optional Arguments</h3>
+
+  You can optionally pass arguments separated by commas or white spaces. The
+  accepted arguments are integers corresponding to the position of the
+  `pre`/`code` entity in the message. Starting from 1. See the example below.
+
+  - Passing `w` or `no-wrap`, or `nw` will highlight the text without wrapping
+    it. The image will scale to the maximum content length. It is useful when
+    highlighting some terminal logs, etc.
+
+  - you can also pass any of `0`, `full`, `f` to get the whole message
+    highlighted. (why?: If you ever need to highlight the full message which
+    contains `pre`/`code` entities).
 
     Take this message as an example:
     ```
@@ -119,9 +126,9 @@ Thanks to these tools and libraries.
 
   <kbd>v0.3.0</kbd> • See [gmy#57178](https://t.me/grammyjs/57178).
 
-- <a id="stats" href="#stats">📊</a> **Stats**: Not a very useful feature;
-  use <ins><samp>/stats</samp></ins> command to find how many times the bot has
-  sent syntax highlighted images for you.
+- <a id="stats" href="#stats">📊</a> **Stats**: Not a very useful feature; use
+  <ins><samp>/stats</samp></ins> command to find how many times the bot has sent
+  syntax highlighted images for you.
 
 ### "Maybe" features that I'd like to add if possible.
 
