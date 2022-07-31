@@ -1,4 +1,4 @@
-const STYLES_PATH = `${Deno.cwd()}/src/styles`;
+const STYLES_PATH = "./assets/styles";
 
 export const { themes, base16Themes } = getThemes();
 export const allThemes = themes.concat(base16Themes);
@@ -24,8 +24,7 @@ export function getTheme(theme: string) {
 }
 
 export function themeName(slug: string): string {
-  return slug
-    .split("-")
+  return slug.split("-")
     .map((str) => str[0].toUpperCase() + str.slice(1))
     .join(" ");
 }
