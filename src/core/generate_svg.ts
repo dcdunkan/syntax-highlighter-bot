@@ -45,7 +45,7 @@ export const FONT_SIZE_PROPS: Record<
       left: 15,
     },
   },
-} as const;
+};
 
 const supported_attrs = [
   "color",
@@ -181,7 +181,11 @@ export function makeSVG(
   const lines = getLineTokens(htmlString, declarations);
   let svg = `<svg xmlns="http://www.w3.org/2000/svg">\n`;
 
-  // For wrapping purposes...
+  const lastLineNumber = lines.length + 1;
+  const lineSectionWidth = lastLineNumber.toString().length *
+    fontProps.char_space;
+
+  // For line wrapping purposes...
   let estimatedWidth = 0;
 
   for (const line of lines) {
@@ -190,10 +194,12 @@ export function makeSVG(
 
     const lineWidth = Math.round(
       fontProps.margin.left +
+        // lineSectionWidth + fontProps.margin.left +
+        // why?: we're calculating content wise, not including linewidth to reduce complexity.
         (lineTokenLength * fontProps.char_space) +
         fontProps.margin.right +
         ((fontProps.char_space + (fontProps.char_space / 4)) / 2),
-      //                          ^space for a dot?
+      //                          ^approx. space for a dot?
     );
 
     if (lineWidth > estimatedWidth) {
@@ -205,10 +211,29 @@ export function makeSVG(
   const needsWrapping = wrap && ((estimatedWidth * 2) > 1400);
 
   let longestLineLength = fontProps.margin.left;
-
   let y = fontProps.margin.top; // 25;
-  for (const line of lines) {
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const lineNumber = i + 1;
+
     let x = fontProps.margin.left; // 15;
+
+    svg += `
+    <text xml:space="preserve" text-rendering="geometricPrecision"
+      x="${x}" y="${y}"
+      font-size="${fontSize}" font-family="monospace"
+      fill="${declarations.get(".hljs")?.color}" fill-opacity="0.5"
+    >${
+      // this has to be the the most simplest hack for this.
+      lineNumber.toString().padStart(
+        lastLineNumber.toString().length,
+        " ",
+      )}</text>`;
+
+    x += lineSectionWidth + fontProps.margin.left;
+    //                      ^ a little spacing between the content and ln.
+
     for (const token of line) {
       if (token.backgroundColor) {
         // TODO: implement logic. later, not needed rn.
@@ -244,12 +269,16 @@ export function makeSVG(
 
       let currentTokenLength = token.text.length * fontProps.char_space; // 7.2
 
+      // IT WORKS :P
+      // ik its repetition and isn't perfect. but it works, thats what Im goin for.
       while (
         needsWrapping && (x + currentTokenLength) > WRAP_BOUNDARY
       ) {
         // these tokens should be cut off at the end
         let acceptedLimit = WRAP_BOUNDARY - x;
-        let acceptedEndTextPos = Math.round(acceptedLimit / 7.2);
+        let acceptedEndTextPos = Math.round(
+          acceptedLimit / fontProps.char_space,
+        );
         const textInThatLine = token.text.slice(0, acceptedEndTextPos);
         svg += `\n    >${escape(textInThatLine)}</text>`;
 
@@ -260,8 +289,8 @@ export function makeSVG(
         currentTokenLength = restOfTheTextPos;
 
         token.text = restOfTheText;
-        x = fontProps.margin.left;
-        y += 20;
+        x = fontProps.margin.left + lineSectionWidth + fontProps.margin.left; // yeh, twice.
+        y += fontProps.line_height;
 
         if (token.backgroundColor) {
           // TODO: implement logic. later, not needed rn.
@@ -310,7 +339,11 @@ export function makeSVG(
   // The bottom and right empty spacing.
   svg += `
   <text xml:space="preserve"
-        x="${longestLineLength + fontProps.margin.right}"
+        x="${
+    needsWrapping
+      ? WRAP_BOUNDARY + fontProps.margin.right
+      : longestLineLength + fontProps.margin.right
+  }"
         y="${y}"
         font-size="${fontSize}"
         font-family="monospace"
