@@ -5,7 +5,7 @@ import { loadFonts } from "./helpers.ts";
 const FONT_DIR = resolve("assets/fonts");
 const fonts = loadFonts(FONT_DIR);
 
-await initialize(Deno.readFile("./assets/svg2png_wasm_bg.wasm"));
+await initialize(Deno.readFile("./assets/svg2png.wasm"));
 
 export function render(
   htmlString: string,
