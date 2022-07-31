@@ -242,17 +242,20 @@ export function makeSVG(
         svg += ` text-decoration="${token.textDecoration}"`;
       }
 
-      const currentPos = x;
       let currentTokenLength = token.text.length * fontProps.char_space; // 7.2
 
-      if (needsWrapping && (currentPos + currentTokenLength) > WRAP_BOUNDARY) {
+      while (
+        needsWrapping && (x + currentTokenLength) > WRAP_BOUNDARY
+      ) {
         // these tokens should be cut off at the end
-        const acceptedLimit = WRAP_BOUNDARY - currentPos;
-        const acceptedEndTextPos = Math.round(acceptedLimit / 7.2);
+        let acceptedLimit = WRAP_BOUNDARY - x;
+        let acceptedEndTextPos = Math.round(acceptedLimit / 7.2);
         const textInThatLine = token.text.slice(0, acceptedEndTextPos);
         svg += `\n    >${escape(textInThatLine)}</text>`;
-        
-        const restOfTheText = token.text.substring(acceptedEndTextPos);
+
+        // split the rest
+        let restOfTheText = token.text.substring(acceptedEndTextPos);
+
         const restOfTheTextPos = restOfTheText.length * fontProps.char_space;
         currentTokenLength = restOfTheTextPos;
 
