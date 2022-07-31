@@ -2,7 +2,6 @@ import { highlight } from "./highlight.ts";
 import { render } from "./engine.ts";
 import { getTheme } from "./themes.ts";
 
-// TODO
 export interface ImageOptions {
   wrap?: boolean;
 }
@@ -20,5 +19,6 @@ export function getImageBuffer(
     font: font,
     fontSize: fontSize,
     scale: 2,
+    ...options,
   });
 }

@@ -16,10 +16,18 @@ export function render(
     fontSize?: number;
     backgroundColor?: string;
     scale?: number;
+
+    // bot options
+    wrap?: boolean;
   },
 ) {
   const props = getDeclarations(config.css);
-  const svg = makeSVG(htmlString, props, config.fontSize ?? 12, true);
+  const svg = makeSVG(
+    htmlString,
+    props,
+    config.fontSize ?? 12,
+    config.wrap ?? true,
+  );
   return svg2png(svg, {
     fonts: fonts,
     backgroundColor: config.backgroundColor ?? props.get(".hljs")!.background,
