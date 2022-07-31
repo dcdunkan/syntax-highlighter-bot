@@ -135,7 +135,8 @@ Thanks to these tools and libraries.
   the message/code blocks. Checkout the
   ["Forced Highlighting"](#forced-highlighting) feature.
 
-  <kbd>v0.3.0</kbd> • See [gmy#57178](https://t.me/grammyjs/57178).
+  > Introduced in <kbd>v0.3.0</kbd> • See
+  > [grammyjs#57178](https://t.me/grammyjs/57178).
 
 - <a id="stats" href="#stats">📊</a> **Stats**: Not a very useful feature; use
   <ins><samp>/stats</samp></ins> command to find how many times the bot has sent
@@ -143,17 +144,20 @@ Thanks to these tools and libraries.
 
 ### "Maybe" features that I'd like to add if possible.
 
-- [x] <b>Forced <ins><samp>/highlight</samp></ins>ing</b> by replying to a
-      message - if the message contains pre code blocks, highlight them in the
-      usual way. If not, highlight the whole message.
 - [ ] Highlight only if the code block contains more than <b><samp>x</samp>
       number of characters</b>. It would be a mess if someone use three
       backticks instead of one backtick, even for a single monospace word.
+
 - [ ] <b>Automatically toggle "Send as Document" _mode_</b> if there is more
       than <samp>x</samp> number of characters.
+
 - [x] <b>No puppeteer.</b> Highlighting without using puppeteer. (The most
       wanted feature). This was done in v0.5.0 by using an implementation which
       creates a SVG and transform it into PNG... blah blah.
+
+- [x] <b>Forced <ins><samp>/highlight</samp></ins>ing</b> by replying to a
+      message - if the message contains pre code blocks, highlight them in the
+      usual way. If not, highlight the whole message.
 
 ## Setup
 
