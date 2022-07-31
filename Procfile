@@ -1,1 +1,0 @@
-web: deno run --allow-net --allow-env --allow-read --allow-write --allow-run --unstable mod.ts

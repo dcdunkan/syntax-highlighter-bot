@@ -1,8 +1,10 @@
 <h1 align="center">🖍️ Syntax Highlighter Bot</h1>
 
+> Source code of [@syntaxybot](https://telegram.me/syntaxybot).
+
 Kind of a _copy_; highly inspired from
 [Piterden/syntax-highlighter-bot](https://github.com/Piterden/syntax-highlighter-bot) -
-Telegram Bot [here](https://telegram.me/cris_highlight_bot)
+Telegram Bot [here](https://telegram.me/cris_highlight_bot).
 
 Minimal syntax highlighting bot for Telegram. Use it in private chats or add to
 group chats. Send text inside three backticks, or any message containing `pre`
@@ -17,7 +19,7 @@ Written in [TypeScript](https://typescriptlang.org) and
 - [Built Using](#built-using)
 - [Features (and usage)](#features)
 - [Setup › Running Locally](#running-locally)
-- [Setup › Deploy to Heroku](#deploy-to-heroku)
+- [Setup › Deploy to Deno Deploy](#deploy-to-deno-deploy)
 - [Setup › Environment Variables](#environment-variables)
 
 ## Built Using
@@ -26,12 +28,18 @@ Thanks to these tools and libraries.
 
 1. [highlight.js][hljs] — Syntax highlighting for the Web. Behind-the-scenes of
    this bot.
-2. [Puppeteer](https://pptr.dev) — Puppeteer is a library which provides a
-   high-level API to control Chrome, Chromium, or Firefox Nightly over the
-   DevTools Protocol. Also a core part of this bot, used for generating syntax
-   highlighted images.
+2. [svg2png-wasm](https://github.com/ssssota/svg2png-wasm) — Used for generating
+   PNG images from custom made SVG.
 3. [grammY](https://grammy.dev) — The Telegram Bot Framework.
 4. [Deta.sh Base](https://deta.sh) — Free and unlimited Cloud Database service.
+
+> puppeteer had a great place in the history of syntax highlighter bots
+> including this one. So, thank you. (Since v0.5.0 we don't use it anymore).
+>
+> - ~~[Puppeteer](https://pptr.dev) — Puppeteer is a library which provides a
+  > high-level API to control Chrome, Chromium, or Firefox Nightly over the
+  > DevTools Protocol. Also a core part of this bot, used for generating syntax
+  > highlighted images.~~
 
 ## Features
 
@@ -85,6 +93,8 @@ Thanks to these tools and libraries.
   - Passing `w` or `no-wrap`, or `nw` will highlight the text without wrapping
     it. The image will scale to the maximum content length. It is useful when
     highlighting some terminal logs, etc.
+
+    > Introduced in <kbd>v0.4.0</kbd>
 
   - you can also pass any of `0`, `full`, `f` to get the whole message
     highlighted. (why?: If you ever need to highlight the full message which
@@ -140,8 +150,9 @@ Thanks to these tools and libraries.
       backticks instead of one backtick, even for a single monospace word.
 - [ ] <b>Automatically toggle "Send as Document" _mode_</b> if there is more
       than <samp>x</samp> number of characters.
-- [ ] <b>No puppeteer.</b> Highlighting without using puppeteer. (The most
-      wanted feature).
+- [x] <b>No puppeteer.</b> Highlighting without using puppeteer. (The most
+      wanted feature). This was done in v0.5.0 by using an implementation which
+      creates a SVG and transform it into PNG... blah blah.
 
 ## Setup
 
@@ -158,7 +169,7 @@ Make sure you have installed [Deno](https://deno.land/).
   like in <samp> [example.env](example.env)</samp>.
 - Run the bot using the command below.
   ```bash
-  deno run --allow-net --allow-env --allow-read --allow-write --allow-run --unstable local.ts
+  deno run --allow-net --allow-env --allow-read local.ts
   ```
 
   **Required permissions**
@@ -166,37 +177,33 @@ Make sure you have installed [Deno](https://deno.land/).
     updates.
   - <samp>--allow-env</samp> - To access environment variables.
   - <samp>--allow-read</samp> - To read [translations](locales),
-    [styles](src/styles/) and
+    [styles](assets/styles/), [fonts](assets/fonts/) and
     <samp>.env</samp> file.
-  - <samp>--allow-write</samp> - Required by puppeteer for writing temp files.
-  - <samp>--allow-run</samp> - To run launch Google Chrome (via puppeteer)
 
 If everything is done correct, you should see "(Username) started" in your
 console.
 
-### Deploy to Heroku
+### Deploy to Deno Deploy
 
 The working bot, [@syntaxybot](https://telegram.me/syntaxybot) is currently
-deployed on **[Heroku](https://heroku.com)** free web dynos. It's pretty easy to
-setup.
+deployed on [Deno Deploy](https://deno.com/deploy) free account. It's pretty
+easy to setup.
 
-Click the button to deploy to [Heroku](https://heroku.com).
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/dcdunkan/syntax-highlighter-bot)
-
-<sub>Or
-<a href="https://heroku.com/deploy?template=https://github.com/dcdunkan/syntax-highlighter-bot">click
-here</a></sub>
+Click
+[here](https://dash.deno.com/new?url=https://raw.githubusercontent.com/dcdunkan/syntax-highlighter-bot/main/mod.ts&env=BOT_TOKEN,DETA_KEY)
+to deploy to Deno Deploy.
 
 After deploying you will get a link to your application, in the format
-`https://<appname>.herokuapp.com/`.
+`https://<appname>.deno.dev/`.
 
 Open browser and go to the link down below.
 
 - Replace the `<BOT_TOKEN>` with your `BOT_TOKEN`.
 - Replace `<APP_URL>` with the link to your application.
 
-`https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<APP_URL>`
+```
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<APP_URL>
+```
 
 This will set the bot's webhook to the deployed application, so Telegram will
 send updates there and it will be able to handle them there.
