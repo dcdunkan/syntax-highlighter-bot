@@ -28,8 +28,9 @@ Thanks to these tools and libraries.
 
 1. [highlight.js][hljs] — Syntax highlighting for the Web. Behind-the-scenes of
    this bot.
-2. [svg2png-wasm](https://github.com/ssssota/svg2png-wasm) — Used for generating
-   PNG images from custom made SVG.
+2. [svg2png-wasm](https://github.com/ssssota/svg2png-wasm) — SVG to PNG
+   converter JS library made with WASM + resvg (no native dependencies). Used
+   for generating PNG images from custom made SVG.
 3. [grammY](https://grammy.dev) — The Telegram Bot Framework.
 4. [Deta.sh Base](https://deta.sh) — Free and unlimited Cloud Database service.
 
