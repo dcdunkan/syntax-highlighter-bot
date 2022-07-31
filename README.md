@@ -37,10 +37,10 @@ Thanks to these tools and libraries.
 > puppeteer had a great place in the history of syntax highlighter bots
 > including this one. So, thank you. (Since v0.5.0 we don't use it anymore).
 >
-> - ~~[Puppeteer](https://pptr.dev) — Puppeteer is a library which provides a
-  > high-level API to control Chrome, Chromium, or Firefox Nightly over the
-  > DevTools Protocol. Also a core part of this bot, used for generating syntax
-  > highlighted images.~~
+> ~~[Puppeteer](https://pptr.dev) — Puppeteer is a library which provides a
+> high-level API to control Chrome, Chromium, or Firefox Nightly over the
+> DevTools Protocol. Also a core part of this bot, used for generating syntax
+> highlighted images.~~
 
 ## Features
 
