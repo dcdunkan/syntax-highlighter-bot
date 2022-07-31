@@ -2,12 +2,18 @@
 import { PublicApi } from "./types.ts";
 import hljs from "https://unpkg.com/@highlightjs/cdn-assets@11.5.1/es/highlight.min.js";
 export default hljs as PublicApi;
-export { default as puppeteer } from "https://deno.land/x/puppeteer@9.0.2/mod.ts";
-export * as css from "https://deno.land/x/css@0.3.0/mod.ts";
+export { parse as parseCSS } from "https://deno.land/x/css@0.3.0/mod.ts";
+export {
+  DOMParser,
+  HTMLElement,
+  HTMLTableCellElement,
+} from "https://esm.sh/linkedom@0.14.12";
+export { initialize, svg2png } from "https://esm.sh/svg2png-wasm@1.3.4";
 
 // src/bot
 export { cleanEnv, str } from "https://deno.land/x/envalid@v0.0.3/mod.ts";
-export { config } from "https://deno.land/std@0.143.0/dotenv/mod.ts";
+export { config } from "https://deno.land/std@0.150.0/dotenv/mod.ts";
+export { resolve } from "https://deno.land/std@0.150.0/path/mod.ts";
 export {
   Bot,
   Composer,
