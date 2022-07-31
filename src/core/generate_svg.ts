@@ -45,7 +45,7 @@ export const FONT_SIZE_PROPS: Record<
       left: 15,
     },
   },
-};
+} as const;
 
 const supported_attrs = [
   "color",
@@ -154,6 +154,8 @@ function getLineTokens(
   return lines;
 }
 
+const WRAP_BOUNDARY = 650;
+
 export function makeSVG(
   htmlString: string,
   declarations: Map<string, Declaration>,
@@ -240,8 +242,59 @@ export function makeSVG(
         svg += ` text-decoration="${token.textDecoration}"`;
       }
 
-      // TODO: wrapping
+      const currentPos = x;
+      let currentTokenLength = token.text.length * fontProps.char_space; // 7.2
+
+      if (needsWrapping && (currentPos + currentTokenLength) > WRAP_BOUNDARY) {
+        // these tokens should be cut off at the end
+        const acceptedLimit = WRAP_BOUNDARY - currentPos;
+        const acceptedEndTextPos = Math.round(acceptedLimit / 7.2);
+        const textInThatLine = token.text.slice(0, acceptedEndTextPos);
+        svg += `\n    >${escape(textInThatLine)}</text>`;
+        
+        const restOfTheText = token.text.substring(acceptedEndTextPos);
+        const restOfTheTextPos = restOfTheText.length * fontProps.char_space;
+        currentTokenLength = restOfTheTextPos;
+
+        token.text = restOfTheText;
+        x = fontProps.margin.left;
+        y += 20;
+
+        if (token.backgroundColor) {
+          // TODO: implement logic. later, not needed rn.
+          // Create rectangle, put it in the background of the <text>. (For .diff)
+        }
+
+        svg += `
+        <text xml:space="preserve" text-rendering="geometricPrecision"
+          x="${x}" y="${y}"
+          font-size="${fontSize}" font-family="monospace"
+          fill="${token.color}"`;
+
+        if (token.fontStyle) {
+          svg += ` font-style="${token.fontStyle}"`;
+        }
+
+        if (token.fontWeight) {
+          const weight = parseInt(token.fontWeight);
+          if (isNaN(weight)) {
+            // normal, lighter, bold, bolder
+          } else if (weight < 300) {
+            svg += ` font-weight="lighter"`;
+          } else if (weight > 400 && weight <= 700) {
+            svg += ` font-weight="bold"`;
+          } else {
+            svg += ` font-weight="bolder"`;
+          }
+        }
+
+        if (token.textDecoration) {
+          svg += ` text-decoration="${token.textDecoration}"`;
+        }
+      }
+
       svg += `\n    >${escape(token.text)}</text>`;
+      x += currentTokenLength;
     }
 
     y += fontProps.line_height; // 20;
