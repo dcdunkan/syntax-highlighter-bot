@@ -1,6 +1,6 @@
 import { Context } from "../helpers/context.ts";
 import { supportsLanguage } from "../../core/highlight.ts";
-import { getScreenshotBuffer, ImageOptions } from "../../core/puppeteer.ts";
+import { getImageBuffer, ImageOptions } from "../../core/render.ts";
 import {
   bytes,
   InlineKeyboard,
@@ -37,10 +37,11 @@ export async function sendImages(
 
     const code = text.slice(entity.offset, entity.offset + entity.length);
 
-    const image = await getScreenshotBuffer(
+    const image = await getImageBuffer(
       code,
       ctx.session.theme,
       ctx.session.font,
+      12,
       language,
       options,
     );

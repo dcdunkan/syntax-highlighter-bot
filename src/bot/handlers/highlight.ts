@@ -1,7 +1,7 @@
 import { Composer, MessageEntity } from "../../deps.ts";
 import { Context } from "../helpers/context.ts";
 import { sendImages } from "../helpers/send_images.ts";
-import { ImageOptions } from "../../core/puppeteer.ts";
+import { ImageOptions } from "../../core/render.ts";
 
 export const highlight = new Composer<Context>();
 
