@@ -11,7 +11,7 @@ export interface SessionData {
 
 export function initial(): SessionData {
   return {
-    font: "JetBrains Mono",
+    font: "JetBrains Mono NL",
     theme: "atom-one-dark",
     as_document: false,
     count: 0,

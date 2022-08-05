@@ -1,8 +1,8 @@
 import env from "./env.ts";
 import { Context } from "./helpers/context.ts";
 import { initial, storage } from "./helpers/session.ts";
-import { fluent } from "./helpers/fluent.ts";
-import { Bot, GrammyError, HttpError, session, useFluent } from "../deps.ts";
+import { i18n } from "./helpers/i18n.ts";
+import { Bot, GrammyError, HttpError, session } from "../deps.ts";
 import { handlers } from "./handlers/mod.ts";
 import { commands, groupAdminCommands } from "./helpers/constants.ts";
 
@@ -18,8 +18,7 @@ bot.api.config.use((prev, method, payload) =>
   })
 );
 
-bot.use(useFluent({ fluent }));
-
+bot.use(i18n);
 bot.use(handlers);
 
 bot.catch(({ ctx, error }) => {

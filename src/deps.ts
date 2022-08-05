@@ -14,6 +14,7 @@ export { createSvg2png, initialize } from "https://esm.sh/svg2png-wasm@1.3.4";
 export { cleanEnv, str } from "https://deno.land/x/envalid@v0.0.3/mod.ts";
 export { config } from "https://deno.land/std@0.151.0/dotenv/mod.ts";
 export { resolve } from "https://deno.land/std@0.151.0/path/mod.ts";
+
 export {
   Bot,
   Composer,
@@ -25,18 +26,19 @@ export {
   session,
   type SessionFlavor,
   webhookCallback,
-} from "https://deno.land/x/grammy@v1.8.3/mod.ts";
+} from "https://deno.land/x/grammy@v1.10.1/mod.ts";
 export {
   type InputFileProxy,
   type Message,
   type MessageEntity,
-} from "https://esm.sh/@grammyjs/types@2.7.1";
+} from "https://deno.land/x/grammy@v1.10.1/types.ts";
+
 export { DetaAdapter } from "https://deno.land/x/grammy_storages@v2.0.0/deta/src/mod.ts";
 
-export { Fluent } from "https://deno.land/x/better_fluent@v0.1.0/mod.ts";
 export {
-  type FluentContextFlavor,
-  useFluent,
-} from "https://raw.githubusercontent.com/dcdunkan/grammy-fluent/main/src/mod.ts";
+  I18n,
+  type I18nFlavor,
+} from "https://ghc.deno.dev/dcdunkan/i18n-2.0@2.0/src/mod.ts";
+
 export { prettyBytes as bytes } from "https://deno.land/std@0.151.0/fmt/bytes.ts";
 export { serve } from "https://deno.land/std@0.151.0/http/server.ts";

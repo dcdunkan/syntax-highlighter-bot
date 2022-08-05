@@ -41,7 +41,7 @@ auto-highlighting =
 stats = 
   {
     $count ->
-      [0] You haven't used me properly :(
+      [0] You haven't used me yet :(
       [1] I've only highlighted one time in this chat.
      *[other] So far, I've highlighted <b>{NUMBER($count, useGrouping:1)}</b> times in this chat :)
   }
