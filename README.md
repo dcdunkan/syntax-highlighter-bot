@@ -1,8 +1,8 @@
-<h1 align="center">🖍️ Syntax Highlighter Bot</h1>
+## Syntax Highlighter Bot
 
 > Source code of [@syntaxybot](https://telegram.me/syntaxybot).
 
-Kind of a _copy_; highly inspired from
+Highly inspired by
 [Piterden/syntax-highlighter-bot](https://github.com/Piterden/syntax-highlighter-bot) -
 Telegram Bot [here](https://telegram.me/cris_highlight_bot).
 
@@ -11,7 +11,7 @@ group chats. Send text inside three backticks, or any message containing `pre`
 or multiline `code` entities, and the bot will reply you with syntax highlighted
 images of that piece of code. Useful in Development groups.
 
-### Try the running bot here: [Syntax Highlighter Bot](https://telegram.me/syntaxybot) 🚀
+#### Try the running bot here: [Syntax Highlighter Bot](https://telegram.me/syntaxybot) 🚀
 
 Written in [TypeScript](https://typescriptlang.org) and
 [grammY](https://grammy.dev/) and runs on [Deno](https://deno.land/).
@@ -22,7 +22,7 @@ Written in [TypeScript](https://typescriptlang.org) and
 - [Setup › Deploy to Deno Deploy](#deploy-to-deno-deploy)
 - [Setup › Environment Variables](#environment-variables)
 
-## Built Using
+### Built Using
 
 Thanks to these tools and libraries.
 
@@ -34,15 +34,20 @@ Thanks to these tools and libraries.
 3. [grammY](https://grammy.dev) — The Telegram Bot Framework.
 4. [Deta.sh Base](https://deta.sh) — Free and unlimited Cloud Database service.
 
-> puppeteer had a great place in the history of syntax highlighter bots
-> including this one. So, thank you. (Since v0.5.0 we don't use it anymore).
+> puppeteer had a great place in the history of most of the syntax highlighter
+> bots including this one. So, thank you. (Since v0.5.0 we don't use it
+> anymore).
 >
 > ~~[Puppeteer](https://pptr.dev) — Puppeteer is a library which provides a
 > high-level API to control Chrome, Chromium, or Firefox Nightly over the
 > DevTools Protocol. Also a core part of this bot, used for generating syntax
 > highlighted images.~~
+>
+> You can still access and host puppeteer edition in the
+> [puppeteer branch](https://github.com/dcdunkan/syntax-highlighter-bot/tree/puppeteer) -
+> (not maintained)
 
-## Features
+### Features
 
 (and usage)
 
@@ -159,9 +164,9 @@ Thanks to these tools and libraries.
       message - if the message contains pre code blocks, highlight them in the
       usual way. If not, highlight the whole message.
 
-## Setup
+### Setup
 
-### Running Locally
+#### Running Locally
 
 Make sure you have installed [Deno](https://deno.land/).
 
@@ -188,18 +193,18 @@ Make sure you have installed [Deno](https://deno.land/).
 If everything is done correct, you should see "(Username) started" in your
 console.
 
-### Deploy to Deno Deploy
+#### Deploy to Deno Deploy
 
 The working bot, [@syntaxybot](https://telegram.me/syntaxybot) is currently
 deployed on [Deno Deploy](https://deno.com/deploy) free account. It's pretty
 easy to setup.
 
 Click
-[here](https://dash.deno.com/new?url=https://raw.githubusercontent.com/dcdunkan/syntax-highlighter-bot/main/mod.ts&env=BOT_TOKEN,DETA_KEY)
+[here](https://dash.deno.com/new?url=https://raw.githubusercontent.com/dcdunkan/syntax-highlighter-bot/main/main.ts&env=BOT_TOKEN,DETA_KEY)
 to deploy to Deno Deploy.
 
 After deploying you will get a link to your application, in the format
-`https://<appname>.deno.dev/`.
+`https://<appname>.deno.dev`.
 
 Open browser and go to the link down below.
 
@@ -207,7 +212,7 @@ Open browser and go to the link down below.
 - Replace `<APP_URL>` with the link to your application.
 
 ```
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<APP_URL>
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<APP_URL>/<BOT_TOKEN>&drop_pending_updates=true
 ```
 
 This will set the bot's webhook to the deployed application, so Telegram will
@@ -239,6 +244,6 @@ If you like to translate this bot into your language, please follow
 
 ---
 
-<p align="center"><samp>Made with ❤️ and ☕</samp></p>
+<h3 align="center">🦕</h3>
 
 [hljs]: https://highlightjs.org
