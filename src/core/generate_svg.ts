@@ -208,7 +208,7 @@ export function makeSVG(
   }
 
   // 2 is the scale of the generated SVG
-  const needsWrapping = wrap && ((estimatedWidth * 2) > 1400);
+  const needsWrapping = wrap && ((estimatedWidth * 2) > (WRAP_BOUNDARY * 2));
 
   let longestLineLength = fontProps.margin.left;
   let y = fontProps.margin.top; // 25;
