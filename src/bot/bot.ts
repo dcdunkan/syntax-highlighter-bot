@@ -1,6 +1,6 @@
 import env from "./env.ts";
 import { Context } from "./helpers/context.ts";
-import { initial, storage } from "./helpers/session.ts";
+import { enhanced, initial } from "./helpers/session.ts";
 import { i18n } from "./helpers/i18n.ts";
 import { Bot, GrammyError, HttpError, session } from "../deps.ts";
 import { handlers } from "./handlers/mod.ts";
@@ -8,7 +8,7 @@ import { commands, groupAdminCommands } from "./helpers/constants.ts";
 
 export const bot = new Bot<Context>(env.BOT_TOKEN);
 
-bot.use(session({ initial, storage }));
+bot.use(session({ initial, storage: enhanced }));
 
 bot.api.config.use((prev, method, payload) =>
   prev(method, {
