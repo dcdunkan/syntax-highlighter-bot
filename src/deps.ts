@@ -8,7 +8,7 @@ export {
   HTMLElement,
   HTMLTableCellElement,
 } from "https://esm.sh/linkedom@0.14.12";
-export { initialize, svg2png } from "https://esm.sh/svg2png-wasm@1.3.4";
+export { createSvg2png, initialize } from "https://esm.sh/svg2png-wasm@1.3.4";
 
 // src/bot
 export { cleanEnv, str } from "https://deno.land/x/envalid@v0.0.3/mod.ts";

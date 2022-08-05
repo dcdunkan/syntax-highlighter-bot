@@ -161,6 +161,7 @@ export function makeSVG(
   declarations: Map<string, Declaration>,
   fontSize: number,
   wrap: boolean,
+  font: string,
 ) {
   const fontProps = FONT_SIZE_PROPS[fontSize];
   if (!fontProps) {
@@ -222,7 +223,7 @@ export function makeSVG(
     svg += `
     <text xml:space="preserve" text-rendering="geometricPrecision"
       x="${x}" y="${y}"
-      font-size="${fontSize}" font-family="monospace"
+      font-size="${fontSize}" font-family="${font}"
       fill="${declarations.get(".hljs")?.color}" fill-opacity="0.5"
     >${
       // this has to be the the most simplest hack for this.
@@ -243,7 +244,7 @@ export function makeSVG(
       svg += `
       <text xml:space="preserve" text-rendering="geometricPrecision"
         x="${x}" y="${y}"
-        font-size="${fontSize}" font-family="monospace"
+        font-size="${fontSize}" font-family="${font}"
         fill="${token.color}" ${getSVGAttributes(token)} `;
 
       let currentTokenLength = token.text.length * fontProps.char_space; // 7.2
@@ -274,7 +275,7 @@ export function makeSVG(
         svg += `
         <text xml:space="preserve" text-rendering="geometricPrecision"
           x="${x}" y="${y}"
-          font-size="${fontSize}" font-family="monospace"
+          font-size="${fontSize}" font-family="${font}"
           fill="${token.color}" ${getSVGAttributes(token)} `;
       }
 
@@ -299,7 +300,7 @@ export function makeSVG(
   }"
         y="${y}"
         font-size="${fontSize}"
-        font-family="monospace"
+        font-family="${font}"
         text-rendering="geometricPrecision"
         fill="${declarations.get(".hljs")?.background}"
   >.</text>`;
