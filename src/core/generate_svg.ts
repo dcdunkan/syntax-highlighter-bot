@@ -244,28 +244,7 @@ export function makeSVG(
       <text xml:space="preserve" text-rendering="geometricPrecision"
         x="${x}" y="${y}"
         font-size="${fontSize}" font-family="monospace"
-        fill="${token.color}"`;
-
-      if (token.fontStyle) {
-        svg += ` font-style="${token.fontStyle}"`;
-      }
-
-      if (token.fontWeight) {
-        const weight = parseInt(token.fontWeight);
-        if (isNaN(weight)) {
-          // normal, lighter, bold, bolder
-        } else if (weight < 300) {
-          svg += ` font-weight="lighter"`;
-        } else if (weight > 400 && weight <= 700) {
-          svg += ` font-weight="bold"`;
-        } else {
-          svg += ` font-weight="bolder"`;
-        }
-      }
-
-      if (token.textDecoration) {
-        svg += ` text-decoration="${token.textDecoration}"`;
-      }
+        fill="${token.color}" ${getSVGAttributes(token)} `;
 
       let currentTokenLength = token.text.length * fontProps.char_space; // 7.2
 
@@ -292,37 +271,11 @@ export function makeSVG(
         x = fontProps.margin.left + lineSectionWidth + fontProps.margin.left; // yeh, twice.
         y += fontProps.line_height;
 
-        if (token.backgroundColor) {
-          // TODO: implement logic. later, not needed rn.
-          // Create rectangle, put it in the background of the <text>. (For .diff)
-        }
-
         svg += `
         <text xml:space="preserve" text-rendering="geometricPrecision"
           x="${x}" y="${y}"
           font-size="${fontSize}" font-family="monospace"
-          fill="${token.color}"`;
-
-        if (token.fontStyle) {
-          svg += ` font-style="${token.fontStyle}"`;
-        }
-
-        if (token.fontWeight) {
-          const weight = parseInt(token.fontWeight);
-          if (isNaN(weight)) {
-            // normal, lighter, bold, bolder
-          } else if (weight < 300) {
-            svg += ` font-weight="lighter"`;
-          } else if (weight > 400 && weight <= 700) {
-            svg += ` font-weight="bold"`;
-          } else {
-            svg += ` font-weight="bolder"`;
-          }
-        }
-
-        if (token.textDecoration) {
-          svg += ` text-decoration="${token.textDecoration}"`;
-        }
+          fill="${token.color}" ${getSVGAttributes(token)} `;
       }
 
       svg += `\n    >${escape(token.text)}</text>`;
@@ -353,4 +306,32 @@ export function makeSVG(
 
   svg += `\n</svg>`;
   return svg;
+}
+
+function getSVGAttributes(token: Token) {
+  let attrs = new Array<string>();
+
+  if (token.fontStyle) {
+    attrs.push(`font-style="${token.fontStyle}"`);
+  }
+
+  if (token.fontWeight) {
+    const weight = parseInt(token.fontWeight);
+    // normal, lighter, bold, bolder
+    if (isNaN(weight)) {
+      attrs.push(`font-weight="normal"`);
+    } else if (weight < 300) {
+      attrs.push(`font-weight="lighter"`);
+    } else if (weight > 400 && weight <= 700) {
+      attrs.push(`font-weight="bold"`);
+    } else {
+      attrs.push(`font-weight="bolder"`);
+    }
+  }
+
+  if (token.textDecoration) {
+    attrs.push(`text-decoration="${token.textDecoration}"`);
+  }
+
+  return attrs.join(" ");
 }
