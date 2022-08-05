@@ -6,7 +6,7 @@ const handleUpdate = webhookCallback(bot, "std/http");
 await bot.init();
 
 serve(async (req) => {
-  const path = new URL(req.url).pathname;
+  const path = new URL(req.url).pathname.slice(1);
 
   if (req.method === "POST" && path === bot.token) {
     try {
