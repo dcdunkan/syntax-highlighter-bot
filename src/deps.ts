@@ -12,8 +12,8 @@ export { createSvg2png, initialize } from "https://esm.sh/svg2png-wasm@1.3.4";
 
 // src/bot
 export { cleanEnv, str } from "https://deno.land/x/envalid@v0.0.3/mod.ts";
-export { config } from "https://deno.land/std@0.150.0/dotenv/mod.ts";
-export { resolve } from "https://deno.land/std@0.150.0/path/mod.ts";
+export { config } from "https://deno.land/std@0.151.0/dotenv/mod.ts";
+export { resolve } from "https://deno.land/std@0.151.0/path/mod.ts";
 export {
   Bot,
   Composer,
@@ -38,5 +38,5 @@ export {
   type FluentContextFlavor,
   useFluent,
 } from "https://raw.githubusercontent.com/dcdunkan/grammy-fluent/main/src/mod.ts";
-export { prettyBytes as bytes } from "https://deno.land/std@0.143.0/fmt/bytes.ts";
-export { serve } from "https://deno.land/std@0.143.0/http/server.ts";
+export { prettyBytes as bytes } from "https://deno.land/std@0.151.0/fmt/bytes.ts";
+export { serve } from "https://deno.land/std@0.151.0/http/server.ts";
