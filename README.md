@@ -90,7 +90,7 @@ Thanks to these tools and libraries.
   - If no `pre` or `code` (multiline) entities were found, highlights the whole
     message. Useful if you forgot to format them before sending.
 
-  <h3 id="forced-highlighting-optional-args" href="#forced-highlighting-optional-args">Optional Arguments</h3>
+  <h4 id="forced-highlighting-optional-args" href="#forced-highlighting-optional-args">Optional Arguments</h4>
 
   You can optionally pass arguments separated by commas or white spaces. The
   accepted arguments are integers corresponding to the position of the
@@ -225,11 +225,11 @@ send updates there and it will be able to handle them there.
 | `BOT_TOKEN` | **Yes.**  | The API token of the Bot. Chat with https://t.me/BotFather to get one.           |
 | `DETA_KEY`  | **Yes.**  | Project Key of Deta.sh Project. Sign up and create a project at https://deta.sh. |
 
-## License
+### License
 
 [MIT License](LICENSE). Copyright (c) 2022 dcdunkan (Dunkan)
 
-## Contributing
+### Contributing
 
 Feel free to contribute! And if you are having issues or if you want suggest
 something, please open an issue here:
