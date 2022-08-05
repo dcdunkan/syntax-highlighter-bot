@@ -6,7 +6,7 @@ export interface ImageOptions {
   wrap?: boolean;
 }
 
-export function getImageBuffer(
+export async function getImageBuffer(
   code: string,
   theme = "github-dark",
   font = "JetBrains Mono NL",
@@ -15,7 +15,7 @@ export function getImageBuffer(
   options?: ImageOptions, // unused for now
 ) {
   return render(highlight(code, language), {
-    css: getTheme(theme),
+    css: await getTheme(theme),
     font: font,
     fontSize: fontSize,
     scale: 2,

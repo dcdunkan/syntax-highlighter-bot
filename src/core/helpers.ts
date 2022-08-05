@@ -1,13 +1,13 @@
-function getFonts(directory: string) {
+async function getFonts(directory: string) {
   const fonts: string[] = [];
-  for (const { name } of Deno.readDirSync(directory)) {
+  for await (const { name } of Deno.readDir(directory)) {
     fonts.push(`${directory}/${name}`);
   }
   return fonts;
 }
 
-export function loadFonts(directory: string) {
-  const fonts = getFonts(directory);
+export async function loadFonts(directory: string) {
+  const fonts = await getFonts(directory);
   return Promise.all(fonts.map((fontPath) => Deno.readFile(fontPath)));
 }
 
