@@ -66,7 +66,7 @@ export function getDeclarations(cssString: string) {
   const parsed = parseCSS(cssString);
 
   for (const rule of parsed.stylesheet.rules) {
-    let declaration: Declaration = {};
+    const declaration: Declaration = {};
 
     for (const decl of rule.declarations) {
       if (decl.type !== "property" || !decl.name) continue;
@@ -255,15 +255,15 @@ export function makeSVG(
         needsWrapping && (x + currentTokenLength) > WRAP_BOUNDARY
       ) {
         // these tokens should be cut off at the end
-        let acceptedLimit = WRAP_BOUNDARY - x;
-        let acceptedEndTextPos = Math.round(
+        const acceptedLimit = WRAP_BOUNDARY - x;
+        const acceptedEndTextPos = Math.round(
           acceptedLimit / fontProps.char_space,
         );
         const textInThatLine = token.text.slice(0, acceptedEndTextPos);
         svg += `\n    >${escape(textInThatLine)}</text>`;
 
         // split the rest
-        let restOfTheText = token.text.substring(acceptedEndTextPos);
+        const restOfTheText = token.text.substring(acceptedEndTextPos);
 
         const restOfTheTextPos = restOfTheText.length * fontProps.char_space;
         currentTokenLength = restOfTheTextPos;
@@ -310,7 +310,7 @@ export function makeSVG(
 }
 
 function getSVGAttributes(token: Token) {
-  let attrs = new Array<string>();
+  const attrs = new Array<string>();
 
   if (token.fontStyle) {
     attrs.push(`font-style="${token.fontStyle}"`);
