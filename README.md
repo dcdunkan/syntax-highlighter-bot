@@ -252,12 +252,6 @@ something, please open an issue here:
 [dcdunkan/syntax-highlighter-bot/issues](https://github.com/dcdunkan/syntax-highlighter-bot/issues).
 Or, open a [PQ](https://telegram.me/grammyjs/34358)!
 
-### License
-
-[MIT License](LICENSE). Copyright (c) 2022 dcdunkan (Dunkan)
-
----
-
-<h3 align="center">🦕</h3>
+### <h3 align="center">2 [🦕](LICENSE) 22</h3>
 
 [hljs]: https://highlightjs.org
