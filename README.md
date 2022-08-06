@@ -2,9 +2,8 @@
 
 > Source code of [@syntaxybot](https://telegram.me/syntaxybot).
 
-Highly inspired by
-[Piterden/syntax-highlighter-bot](https://github.com/Piterden/syntax-highlighter-bot) -
-Telegram Bot [here](https://telegram.me/cris_highlight_bot).
+Inspired by
+[Piterden/syntax-highlighter-bot](https://github.com/Piterden/syntax-highlighter-bot).
 
 Minimal syntax highlighting bot for Telegram. Use it in private chats or add to
 group chats. Send text inside three backticks, or any message containing `pre`
@@ -43,109 +42,117 @@ Thanks to these tools and libraries.
 > DevTools Protocol. Also a core part of this bot, used for generating syntax
 > highlighted images.~~
 >
-> You can still access and host puppeteer edition in the
-> [puppeteer branch](https://github.com/dcdunkan/syntax-highlighter-bot/tree/puppeteer) -
-> (not maintained)
+> You can still access the puppeteer edition from the
+> [puppeteer branch](https://github.com/dcdunkan/syntax-highlighter-bot/tree/puppeteer)
+> and host it if you want to - (not maintained)
 
 ### Features
 
-(and usage)
+#### Syntax Highlighting
 
-- <a id="syntax-highlighting" href="#syntax-highlighting">🖍️</a> · **Syntax
-  Highlighting** for almost 200 languages with automatic language detection -
-  power of [highlight.js][hljs]!
+**Syntax Highlighting** for almost 200 languages with automatic language
+detection - power of [highlight.js][hljs]!
 
-- <a id="custom-theming" href="#custom-theming">🎨</a> · **Custom theming** for
-  the images. Use the <ins><samp>/theme</samp></ins> command to set any theme
-  from [this list](https://telegra.ph/Themes---Syntax-Highlighter-Bot-04-14).
-  See themes in action [here](https://highlightjs.org/static/demo/).
+<a id="language-detection" href="#language-detection"></a> **Language
+Detection**: Tries to detect and use the detected language for more accurate
+results.
 
-- <a id="multiple-fonts" href="#multiple-fonts">🗛</a> · **Multiple fonts**
-  support. See the <ins><samp>/font</samp></ins> command in chat for the list of
-  available fonts.
+- `bot.ts <code>` - Detects <samp>ts</samp>.
+- `ts <code>` - Detects <samp>ts</samp>.
+- `<code>` - Auto detection by [highlight.js][hljs].
 
-- <a id="as-documents" href="#as-documents">🗎</a> · **Send images as
-  documents**. Sometimes long code might make the image blurry due to the
-  default Telegram image compression. Sending them as documents fixes the issue.
-  Use either <ins><samp>/as_doc</samp></ins> or
-  <ins><samp>/as_document</samp></ins> command.
+NOTE: The `<code>` ~~should be a <samp>pre</samp> formatted code block~~ could
+be a <samp>pre</samp> entity formatted code block, or a multiline
+<samp>code</samp> entity.
 
-- <a id="language-detection" href="#language-detection">👀</a> · **Language
-  Detection**: Tries to detect and use the language for more accurate results.
-  - `bot.ts <code>` - Detects <samp>ts</samp>.
-  - `ts <code>` - Detects <samp>ts</samp>.
-  - `<code>` - Auto detection by [highlight.js][hljs].
+#### Customization
 
-  NOTE: The `<code>` ~~should be a <samp>pre</samp> formatted code block~~ could
-  be a <samp>pre</samp> entity formatted code block, or a multiline
-  <samp>code</samp> entity.
+<a id="custom-theming" href="#custom-theming">🎨</a> **Custom theming** for the
+images. Use the <ins><samp>/theme</samp></ins> command to set any theme from
+[this list](https://telegra.ph/Themes---Syntax-Highlighter-Bot-04-14). See
+themes in action [here](https://highlightjs.org/static/demo/).
 
-- <a id="forced-highlighting" href="#forced-highlighting">🖌️</a> · **Forced
-  Highlighting**: Replying
-  <ins><samp>/highlight</samp></ins> or
-  <ins><samp>/hl</samp></ins> to a message containing text or caption, will
-  - check for `pre` and `code` (multiline) entities and if there is any, only
-    highlights those as it normally do. Useful if the original message was
-    edited later.
-  - If no `pre` or `code` (multiline) entities were found, highlights the whole
-    message. Useful if you forgot to format them before sending.
+<a id="multiple-fonts" href="#multiple-fonts"></a> **Multiple fonts** support.
+See the <ins><samp>/font</samp></ins> command in chat for the list of available
+fonts. Add a font that you like by putting them in the
+[assets/fonts](assets/fonts/) and opening a PR.
 
-  <h4 id="forced-highlighting-optional-args" href="#forced-highlighting-optional-args">Optional Arguments</h4>
+<a id="as-documents" href="#as-documents"></a> **Send images as documents**.
+Sometimes long code might make the image blurry due to the default Telegram
+image compression. Sending them as documents fixes the issue. Use either
+<ins><samp>/as_doc</samp></ins> or
+<ins><samp>/as_document</samp></ins> command.
 
-  You can optionally pass arguments separated by commas or white spaces. The
-  accepted arguments are integers corresponding to the position of the
-  `pre`/`code` entity in the message. Starting from 1. See the example below.
+#### Better User Experience
 
-  - Passing `w` or `no-wrap`, or `nw` will highlight the text without wrapping
-    it. The image will scale to the maximum content length. It is useful when
-    highlighting some terminal logs, etc.
+<a id="forced-highlighting" href="#forced-highlighting"></a> **Forced
+Highlighting**: Replying
+<ins><samp>/highlight</samp></ins> or
+<ins><samp>/hl</samp></ins> to a message containing text or caption, will
 
-    > Introduced in <kbd>v0.4.0</kbd>
+- check for `pre` and `code` (multiline) entities and if there is any, only
+  highlights those as it normally do. Useful if the original message was edited
+  later.
+- If no `pre` or `code` (multiline) entities were found, highlights the whole
+  message. Useful if you forgot to format them before sending.
 
-  - you can also pass any of `0`, `full`, `f` to get the whole message
-    highlighted. (why?: If you ever need to highlight the full message which
-    contains `pre`/`code` entities).
+<h5 id="forced-highlighting-optional-args" href="#forced-highlighting-optional-args">Optional Arguments</h5>
 
-    Take this message as an example:
-    ```
-    Lorem ipsum <code (inline)> dolor sit amet.
+You can optionally pass arguments separated by commas or white spaces. The
+accepted arguments are integers corresponding to the position of the
+`pre`/`code` entity in the message. Starting from 1. See the example below.
 
-    <code (multi line)>
+- Passing `w` or `no-wrap`, or `nw` will highlight the text without wrapping it.
+  The image will scale to the maximum content length. It is useful when
+  highlighting some terminal logs, etc.
 
-    Nunc in ligula vehicula quam efficitur vehicula at lacinia erat.
+  > Introduced in <kbd>v0.4.0</kbd>
 
-    <pre>
-    ```
+- you can also pass any of `0`, `full`, `f` to get the whole message
+  highlighted. (why?: If you ever need to highlight the full message which
+  contains `pre`/`code` entities).
 
-    Now, replying,
+  Take this message as an example:
+  ```
+  Lorem ipsum <code (inline)> dolor sit amet.
 
-    > **NOTE**: <ins><samp>/hl</samp></ins> is the same as
-    > <ins><samp>/highlight</samp></ins>. It's just a short form.
+  <code (multi line)>
 
-    - `/hl` will highlight `<code (multi line)>` and `<pre>` (Default).
-    - `/hl 1` will only highlight the `<code (inline)>`.
-    - `/hl 2` will only highlight the `<code (multi line)>`.
-    - `/hl 3` will only highlight the `<pre>`.
-    - `/hl 1 3` will highlight both `<code (inline)>` and `<pre>`.
-    - `/hl 0` or `/hl f` or `/hl full` will highlight the whole message.
+  Nunc in ligula vehicula quam efficitur vehicula at lacinia erat.
 
-    **NOTE**: `/hl 0 1` only highlights the full message; not both full message
-    and 1st `pre`/`code` entity.
+  <pre>
+  ```
 
-- <a id="toggle-auto-shl" href="#toggle-auto-shl">🚫</a> · **Toggle Automatic
-  Syntax Highlighting**: You can disable auto syntax highlighting by using the
-  <ins><samp>/toggle_auto_hl</samp></ins> command. (Use the same command to
-  re-enable it). You don't always need the bot to highlight even the small
-  codeblocks. So, when you need the highlighting, you can force it to highlight
-  the message/code blocks. Checkout the
-  ["Forced Highlighting"](#forced-highlighting) feature.
+  Now, replying,
 
-  > Introduced in <kbd>v0.3.0</kbd> • See
-  > [grammyjs#57178](https://t.me/grammyjs/57178).
+  > **NOTE**: <ins><samp>/hl</samp></ins> is the same as
+  > <ins><samp>/highlight</samp></ins>. It's just a short form.
 
-- <a id="stats" href="#stats">📊</a> **Stats**: Not a very useful feature; use
-  <ins><samp>/stats</samp></ins> command to find how many times the bot has sent
-  syntax highlighted images for you.
+  - `/hl` will highlight `<code (multi line)>` and `<pre>` (Default).
+  - `/hl 1` will only highlight the `<code (inline)>`.
+  - `/hl 2` will only highlight the `<code (multi line)>`.
+  - `/hl 3` will only highlight the `<pre>`.
+  - `/hl 1 3` will highlight both `<code (inline)>` and `<pre>`.
+  - `/hl 0` or `/hl f` or `/hl full` will highlight the whole message.
+
+  **NOTE**: `/hl 0 1` only highlights the full message; not both full message
+  and 1st `pre`/`code` entity.
+
+<a id="toggle-auto-shl" href="#toggle-auto-shl"></a> **Toggle Automatic Syntax
+Highlighting**: You can disable auto syntax highlighting by using the
+<ins><samp>/toggle_auto_hl</samp></ins> command. (Use the same command to
+re-enable it). You don't always need the bot to highlight even the small
+codeblocks. So, when you need the highlighting, you can force it to highlight
+the message/code blocks. Checkout the
+["Forced Highlighting"](#forced-highlighting) feature.
+
+> Introduced in <kbd>v0.3.0</kbd> • See
+> [grammyjs#57178](https://t.me/grammyjs/57178).
+
+<a id="stats" href="#stats"></a> **Stats**: Not a very useful feature, I know.
+Use
+<ins><samp>/stats</samp></ins> command to find how many times the bot has sent
+syntax highlighted images for you.
 
 ### "Maybe" features that I'd like to add if possible.
 
@@ -168,27 +175,32 @@ Thanks to these tools and libraries.
 
 #### Running Locally
 
-Make sure you have installed [Deno](https://deno.land/).
+Make sure you have installed [Deno CLI](https://deno.land/).
 
-- Clone the repository.
-  ```bash
-  git clone https://github.com/dcdunkan/syntax-highlighter-bot.git
-  ```
-- Change directory (`cd`) to the cloned repository.
-- Create a `.env` file and set [environment variables](#environment-variables)
-  like in <samp> [example.env](example.env)</samp>.
-- Run the bot using the command below.
-  ```bash
-  deno run --allow-net --allow-env --allow-read local.ts
-  ```
+Clone the repository.
 
-  **Required permissions**
-  - <samp>--allow-net</samp> - To communicate with Telegram servers and receive
-    updates.
-  - <samp>--allow-env</samp> - To access environment variables.
-  - <samp>--allow-read</samp> - To read [translations](locales),
-    [styles](assets/styles/), [fonts](assets/fonts/) and
-    <samp>.env</samp> file.
+```bash
+git clone https://github.com/dcdunkan/syntax-highlighter-bot.git
+```
+
+Go to to the cloned repository folder. Create a `.env` file and set
+[environment variables](#environment-variables) like in
+[example.env](example.env).
+
+Run the bot using the command below.
+
+```bash
+deno run --allow-net --allow-env --allow-read local.ts
+```
+
+**Required permissions**
+
+- <samp>--allow-net</samp> - To communicate with Telegram servers and receive
+  updates.
+- <samp>--allow-env</samp> - To access environment variables.
+- <samp>--allow-read</samp> - To read [translations](locales),
+  [styles](assets/styles/), [fonts](assets/fonts/) and
+  <samp>.env</samp> file.
 
 If everything is done correct, you should see "(Username) started" in your
 console.
