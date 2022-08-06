@@ -1,4 +1,4 @@
-## Syntax Highlighter Bot
+# Syntax Highlighter Bot
 
 > Source code of [@syntaxybot](https://telegram.me/syntaxybot).
 
@@ -10,7 +10,8 @@ group chats. Send text inside three backticks, or any message containing `pre`
 or multiline `code` entities, and the bot will reply you with syntax highlighted
 images of that piece of code. Useful in Development groups.
 
-#### Try the running bot here: [Syntax Highlighter Bot](https://telegram.me/syntaxybot) 🚀
+**Try the running bot here:
+[Syntax Highlighter Bot](https://telegram.me/syntaxybot) 🚀**
 
 Written in [TypeScript](https://typescriptlang.org) and
 [grammY](https://grammy.dev/) and runs on [Deno](https://deno.land/).
@@ -21,7 +22,7 @@ Written in [TypeScript](https://typescriptlang.org) and
 - [Setup › Deploy to Deno Deploy](#deploy-to-deno-deploy)
 - [Setup › Environment Variables](#environment-variables)
 
-### Built Using
+## Built Using
 
 Thanks to these tools and libraries.
 
@@ -46,9 +47,9 @@ Thanks to these tools and libraries.
 > [puppeteer branch](https://github.com/dcdunkan/syntax-highlighter-bot/tree/puppeteer)
 > and host it if you want to - (not maintained)
 
-### Features
+## Features
 
-#### Syntax Highlighting
+### Syntax Highlighting
 
 **Syntax Highlighting** for almost 200 languages with automatic language
 detection - power of [highlight.js][hljs]!
@@ -65,9 +66,9 @@ NOTE: The `<code>` ~~should be a <samp>pre</samp> formatted code block~~ could
 be a <samp>pre</samp> entity formatted code block, or a multiline
 <samp>code</samp> entity.
 
-#### Customization
+### 🎨 Customization
 
-<a id="custom-theming" href="#custom-theming">🎨</a> **Custom theming** for the
+<a id="custom-theming" href="#custom-theming"></a> **Custom theming** for the
 images. Use the <ins><samp>/theme</samp></ins> command to set any theme from
 [this list](https://telegra.ph/Themes---Syntax-Highlighter-Bot-04-14). See
 themes in action [here](https://highlightjs.org/static/demo/).
@@ -75,7 +76,7 @@ themes in action [here](https://highlightjs.org/static/demo/).
 <a id="multiple-fonts" href="#multiple-fonts"></a> **Multiple fonts** support.
 See the <ins><samp>/font</samp></ins> command in chat for the list of available
 fonts. Add a font that you like by putting them in the
-[assets/fonts](assets/fonts/) and opening a PR.
+[assets/fonts/](assets/fonts/) and opening a PR.
 
 <a id="as-documents" href="#as-documents"></a> **Send images as documents**.
 Sometimes long code might make the image blurry due to the default Telegram
@@ -83,7 +84,7 @@ image compression. Sending them as documents fixes the issue. Use either
 <ins><samp>/as_doc</samp></ins> or
 <ins><samp>/as_document</samp></ins> command.
 
-#### Better User Experience
+### Better User Experience
 
 <a id="forced-highlighting" href="#forced-highlighting"></a> **Forced
 Highlighting**: Replying
@@ -96,47 +97,48 @@ Highlighting**: Replying
 - If no `pre` or `code` (multiline) entities were found, highlights the whole
   message. Useful if you forgot to format them before sending.
 
-<h5 id="forced-highlighting-optional-args" href="#forced-highlighting-optional-args">Optional Arguments</h5>
+<h4 id="forced-highlighting-optional-args" href="#forced-highlighting-optional-args">Optional Arguments</h4>
 
 You can optionally pass arguments separated by commas or white spaces. The
 accepted arguments are integers corresponding to the position of the
 `pre`/`code` entity in the message. Starting from 1. See the example below.
 
-- Passing `w` or `no-wrap`, or `nw` will highlight the text without wrapping it.
-  The image will scale to the maximum content length. It is useful when
-  highlighting some terminal logs, etc.
+Passing `w` or `no-wrap`, or `nw` will highlight the text without wrapping it.
+The image will scale to the maximum content length. It is useful when
+highlighting some terminal logs, etc.
 
-  > Introduced in <kbd>v0.4.0</kbd>
+> Introduced in <kbd>v0.4.0</kbd>
 
-- you can also pass any of `0`, `full`, `f` to get the whole message
-  highlighted. (why?: If you ever need to highlight the full message which
-  contains `pre`/`code` entities).
+You can also pass any of `0`, `full`, `f` to get the whole message highlighted.
+(why?: If you ever need to highlight the full message which contains
+`pre`/`code` entities).
 
-  Take this message as an example:
-  ```
-  Lorem ipsum <code (inline)> dolor sit amet.
+Take this message as an example:
 
-  <code (multi line)>
+```
+Lorem ipsum <code (inline)> dolor sit amet.
 
-  Nunc in ligula vehicula quam efficitur vehicula at lacinia erat.
+<code (multi line)>
 
-  <pre>
-  ```
+Nunc in ligula vehicula quam efficitur vehicula at lacinia erat.
 
-  Now, replying,
+<pre>
+```
 
-  > **NOTE**: <ins><samp>/hl</samp></ins> is the same as
-  > <ins><samp>/highlight</samp></ins>. It's just a short form.
+Now, replying,
 
-  - `/hl` will highlight `<code (multi line)>` and `<pre>` (Default).
-  - `/hl 1` will only highlight the `<code (inline)>`.
-  - `/hl 2` will only highlight the `<code (multi line)>`.
-  - `/hl 3` will only highlight the `<pre>`.
-  - `/hl 1 3` will highlight both `<code (inline)>` and `<pre>`.
-  - `/hl 0` or `/hl f` or `/hl full` will highlight the whole message.
+> **NOTE**: <ins><samp>/hl</samp></ins> is the same as
+> <ins><samp>/highlight</samp></ins>. It's just a short form.
 
-  **NOTE**: `/hl 0 1` only highlights the full message; not both full message
-  and 1st `pre`/`code` entity.
+- `/hl` will highlight `<code (multi line)>` and `<pre>` (Default).
+- `/hl 1` will only highlight the `<code (inline)>`.
+- `/hl 2` will only highlight the `<code (multi line)>`.
+- `/hl 3` will only highlight the `<pre>`.
+- `/hl 1 3` will highlight both `<code (inline)>` and `<pre>`.
+- `/hl 0` or `/hl f` or `/hl full` will highlight the whole message.
+
+**NOTE**: `/hl 0 1` only highlights the full message; not both full message and
+1st `pre`/`code` entity.
 
 <a id="toggle-auto-shl" href="#toggle-auto-shl"></a> **Toggle Automatic Syntax
 Highlighting**: You can disable auto syntax highlighting by using the
@@ -171,9 +173,9 @@ syntax highlighted images for you.
       message - if the message contains pre code blocks, highlight them in the
       usual way. If not, highlight the whole message.
 
-### Setup
+## Setup
 
-#### Running Locally
+### Running Locally
 
 Make sure you have installed [Deno CLI](https://deno.land/).
 
@@ -205,7 +207,7 @@ deno run --allow-net --allow-env --allow-read local.ts
 If everything is done correct, you should see "(Username) started" in your
 console.
 
-#### Deploy to Deno Deploy
+### Deploy to Deno Deploy
 
 The working bot, [@syntaxybot](https://telegram.me/syntaxybot) is currently
 deployed on [Deno Deploy](https://deno.com/deploy) free account. It's pretty
@@ -230,29 +232,29 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<APP_URL>/<BOT_TOKEN>&dro
 This will set the bot's webhook to the deployed application, so Telegram will
 send updates there and it will be able to handle them there.
 
-### Environment Variables
+## Environment Variables
 
 | Variable    | Required? | Description                                                                      |
 | ----------- | --------- | -------------------------------------------------------------------------------- |
 | `BOT_TOKEN` | **Yes.**  | The API token of the Bot. Chat with https://t.me/BotFather to get one.           |
 | `DETA_KEY`  | **Yes.**  | Project Key of Deta.sh Project. Sign up and create a project at https://deta.sh. |
 
-### License
+## Translating
 
-[MIT License](LICENSE). Copyright (c) 2022 dcdunkan (Dunkan)
+If you like to translate this bot into your language, please follow
+[the English translation file](locales/en.ftl). This project uses
+[Fluent](https://projectfluent.org) for localization.
 
-### Contributing
+## Contributing
 
 Feel free to contribute! And if you are having issues or if you want suggest
 something, please open an issue here:
 [dcdunkan/syntax-highlighter-bot/issues](https://github.com/dcdunkan/syntax-highlighter-bot/issues).
 Or, open a [PQ](https://telegram.me/grammyjs/34358)!
 
-### Translating
+### License
 
-If you like to translate this bot into your language, please follow
-[the English translation file](locales/en.ftl). This project uses
-[Fluent](https://projectfluent.org) for localization.
+[MIT License](LICENSE). Copyright (c) 2022 dcdunkan (Dunkan)
 
 ---
 
