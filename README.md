@@ -69,27 +69,27 @@ be a <samp>pre</samp> entity formatted code block, or a multiline
 ### 🎨 Customization
 
 <a id="custom-theming" href="#custom-theming"></a> **Custom theming** for the
-images. Use the <ins><samp>/theme</samp></ins> command to set any theme from
+images. Use the <samp>/theme</samp> command to set any theme from
 [this list](https://telegra.ph/Themes---Syntax-Highlighter-Bot-04-14). See
 themes in action [here](https://highlightjs.org/static/demo/).
 
 <a id="multiple-fonts" href="#multiple-fonts"></a> **Multiple fonts** support.
-See the <ins><samp>/font</samp></ins> command in chat for the list of available
-fonts. Add a font that you like by putting them in the
-[assets/fonts/](assets/fonts/) and opening a PR.
+See the <samp>/font</samp> command in chat for the list of available fonts. Add
+a font that you like by putting them in the [assets/fonts/](assets/fonts/) and
+opening a PR.
 
 <a id="as-documents" href="#as-documents"></a> **Send images as documents**.
 Sometimes long code might make the image blurry due to the default Telegram
 image compression. Sending them as documents fixes the issue. Use either
-<ins><samp>/as_doc</samp></ins> or
-<ins><samp>/as_document</samp></ins> command.
+<samp>/as_doc</samp> or
+<samp>/as_document</samp> command.
 
 ### Better User Experience
 
 <a id="forced-highlighting" href="#forced-highlighting"></a> **Forced
 Highlighting**: Replying
-<ins><samp>/highlight</samp></ins> or
-<ins><samp>/hl</samp></ins> to a message containing text or caption, will
+<samp>/highlight</samp> or
+<samp>/hl</samp> to a message containing text or caption, will
 
 - check for `pre` and `code` (multiline) entities and if there is any, only
   highlights those as it normally do. Useful if the original message was edited
@@ -127,8 +127,8 @@ Nunc in ligula vehicula quam efficitur vehicula at lacinia erat.
 
 Now, replying,
 
-> **NOTE**: <ins><samp>/hl</samp></ins> is the same as
-> <ins><samp>/highlight</samp></ins>. It's just a short form.
+> **NOTE**: <samp>/hl</samp> is the same as
+> <samp>/highlight</samp>. It's just a short form.
 
 - `/hl` will highlight `<code (multi line)>` and `<pre>` (Default).
 - `/hl 1` will only highlight the `<code (inline)>`.
@@ -142,19 +142,18 @@ Now, replying,
 
 <a id="toggle-auto-shl" href="#toggle-auto-shl"></a> **Toggle Automatic Syntax
 Highlighting**: You can disable auto syntax highlighting by using the
-<ins><samp>/toggle_auto_hl</samp></ins> command. (Use the same command to
-re-enable it). You don't always need the bot to highlight even the small
-codeblocks. So, when you need the highlighting, you can force it to highlight
-the message/code blocks. Checkout the
-["Forced Highlighting"](#forced-highlighting) feature.
+<samp>/toggle_auto_hl</samp> command. (Use the same command to re-enable it).
+You don't always need the bot to highlight even the small codeblocks. So, when
+you need the highlighting, you can force it to highlight the message/code
+blocks. Checkout the ["Forced Highlighting"](#forced-highlighting) feature.
 
 > Introduced in <kbd>v0.3.0</kbd> • See
 > [grammyjs#57178](https://t.me/grammyjs/57178).
 
 <a id="stats" href="#stats"></a> **Stats**: Not a very useful feature, I know.
 Use
-<ins><samp>/stats</samp></ins> command to find how many times the bot has sent
-syntax highlighted images for you.
+<samp>/stats</samp> command to find how many times the bot has sent syntax
+highlighted images for you.
 
 ### "Maybe" features that I'd like to add if possible.
 
@@ -162,16 +161,16 @@ syntax highlighted images for you.
       number of characters</b>. It would be a mess if someone use three
       backticks instead of one backtick, even for a single monospace word.
 
-- [ ] <b>Automatically toggle "Send as Document" _mode_</b> if there is more
-      than <samp>x</samp> number of characters.
+- [ ] <b>Automatically toggle "Send as Document" mode</b> if there is more than
+      <samp>x</samp> number of characters.
 
 - [x] <b>No puppeteer.</b> Highlighting without using puppeteer. (The most
       wanted feature). This was done in v0.5.0 by using an implementation which
       creates a SVG and transform it into PNG... blah blah.
 
-- [x] <b>Forced <ins><samp>/highlight</samp></ins>ing</b> by replying to a
-      message - if the message contains pre code blocks, highlight them in the
-      usual way. If not, highlight the whole message.
+- [x] <b>Forced <samp>/highlight</samp>ing</b> by replying to a message - if the
+      message contains pre code blocks, highlight them in the usual way. If not,
+      highlight the whole message.
 
 ## Setup
 
