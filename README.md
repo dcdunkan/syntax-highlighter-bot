@@ -165,8 +165,8 @@ highlighted images for you.
       <samp>x</samp> number of characters.
 
 - [x] <b>No puppeteer.</b> Highlighting without using puppeteer. (The most
-      wanted feature). This was done in v0.5.0 by using an implementation which
-      creates a SVG and transform it into PNG... blah blah.
+      wanted feature). This was done in <kbd>v0.5.0</kbd> by using an
+      implementation which creates a SVG and transform it into PNG... blah blah.
 
 - [x] <b>Forced <samp>/highlight</samp>ing</b> by replying to a message - if the
       message contains pre code blocks, highlight them in the usual way. If not,
