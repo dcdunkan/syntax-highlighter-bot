@@ -216,6 +216,10 @@ Click
 [here](https://dash.deno.com/new?url=https://raw.githubusercontent.com/dcdunkan/syntax-highlighter-bot/main/main.ts&env=BOT_TOKEN,DETA_KEY)
 to deploy to Deno Deploy.
 
+> If you're having issues with deploying using the above link, try forking this
+> repository and deploying from [Deno Deploy Dashboard](https://dash.deno.com/)
+> by connecting to the forked repository.
+
 After deploying you will get a link to your application, in the format
 `https://<appname>.deno.dev`.
 
