@@ -20,12 +20,11 @@ export function escape(str: string): string {
     .replace(/'/g, "&apos;");
 }
 
-export const fonts = [
-  "Fira Code",
+export const supportedFonts = [
   "JetBrains Mono NL",
   "Source Code Pro",
 ];
 
 export function isSupportedFont(name: string) {
-  return fonts.includes(name);
+  return supportedFonts.includes(name);
 }

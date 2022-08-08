@@ -1,10 +1,10 @@
 import { Composer } from "../../deps.ts";
 import { Context } from "../helpers/context.ts";
-import { fonts } from "../../core/helpers.ts";
+import { supportedFonts } from "../../core/helpers.ts";
 
 export const font = new Composer<Context>();
 
-const fontsList = fonts
+const fontsList = supportedFonts
   .map((font) => `- <code>${font}</code>`)
   .join("\n");
 
@@ -18,7 +18,7 @@ font.command("font", async (ctx) => {
     }));
   }
 
-  if (!fonts.includes(arg)) {
+  if (!supportedFonts.includes(arg)) {
     return await ctx.reply(ctx.t("font.invalid"));
   }
 
