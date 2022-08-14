@@ -3,18 +3,18 @@ import { bot } from "./src/bot/bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-const port = parseInt(Deno.env.get("PORT") ?? "8000");
-console.log(`Listening on: ${port}`);
+await bot.init();
 
 serve(async (req) => {
-  if (req.method == "POST") {
+  const path = new URL(req.url).pathname.slice(1);
+
+  if (req.method === "POST" && path === bot.token) {
     try {
       return await handleUpdate(req);
     } catch (err) {
       console.error(err);
-      return new Response();
     }
   }
 
-  return new Response();
-}, { port });
+  return Response.redirect(`https://telegram.me/${bot.botInfo.username}`);
+});

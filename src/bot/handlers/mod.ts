@@ -16,9 +16,9 @@ export const handlers = new Composer<Context>();
 // commands that only can be used by private chat,
 // and administrators of the group chat.
 handlers
+  .chatType(["group", "private", "supergroup"])
   .filter(async (ctx) => {
     if (ctx.chat?.type === "private") return true;
-    if (ctx.chat?.type === "channel") return false;
     const user = await ctx.getAuthor();
     return user.status === "creator" || user.status === "administrator";
   })

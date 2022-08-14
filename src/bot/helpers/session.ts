@@ -1,5 +1,6 @@
-import { DetaAdapter } from "../../deps.ts";
 import env from "../env.ts";
+import { DetaAdapter, enhanceStorage } from "../../deps.ts";
+import { migrations } from "./migrations.ts";
 
 export interface SessionData {
   font: string;
@@ -11,7 +12,7 @@ export interface SessionData {
 
 export function initial(): SessionData {
   return {
-    font: "JetBrains Mono",
+    font: "JetBrains Mono NL",
     theme: "atom-one-dark",
     as_document: false,
     count: 0,
@@ -19,7 +20,9 @@ export function initial(): SessionData {
   };
 }
 
-export const storage = new DetaAdapter({
+const storage = new DetaAdapter({
   baseName: "session",
   projectKey: env.DETA_KEY,
 });
+
+export const enhanced = enhanceStorage({ storage, migrations });
