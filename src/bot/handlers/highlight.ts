@@ -10,8 +10,10 @@ highlight.command(["highlight", "hl"], async (ctx) => {
     return await ctx.reply(ctx.t("highlight.reply-to-message"));
   }
 
-  const text = ctx.msg.reply_to_message.text;
-  if (!text) return await ctx.reply(ctx.t("highlight.reply-to-message"));
+  let text: string;
+  if (ctx.msg.reply_to_message.text) text = ctx.msg.reply_to_message.text; 
+  else if (ctx.msg.reply_to_message.caption) text = ctx.msg.reply_to_message.caption; 
+  else return await ctx.reply(ctx.t("highlight.reply-to-message"));
 
   let entities: MessageEntity[];
   if (ctx.msg.reply_to_message.entities) {
