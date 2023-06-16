@@ -15,6 +15,7 @@ bot.api.config.use((prev, method, payload) =>
     ...payload,
     parse_mode: "HTML",
     disable_web_page_preview: true,
+    allow_sending_without_reply: true,
   })
 );
 
